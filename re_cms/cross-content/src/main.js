@@ -3,26 +3,60 @@ import _ from 'lodash';
 import React from 'react';
 import ReactDOM  from 'react-dom';
 
+
+class BoxContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            boxes: this.props.boxes
+        };
+    }
+
+    onExtend(val) {
+        this.setState({
+            boxes: this.state.boxes.concat(val)
+        });
+    }
+
+    render() {
+        var _extend = this.onExtend.bind(this);
+        return  <div>
+                {this.state.boxes.map(function(box){
+                    return <Box boxid={box} onExtend={_extend}  />
+                })}
+            </div>;
+    }
+}
+
+
 class Box extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             box: {}
         };
     }
 
     componentDidMount() {
+        var self = this;
         $.getJSON('data/boxes.json', function(result) {
-            console.log(result);
-            this.setState({box: result[0]});
+            var _box = _.find(result, (r)=> r.id == self.props.boxid );
+            this.setState({box: _box});
         }.bind(this));
     }
 
     render() {
-        return <div  className="card-wrapper">
+        return <div className="card-wrapper">
               <BoxContent content = {this.state.box.content} ></BoxContent>
-              <BoxExtend   leadTo = {this.state.box.leadTo}  relateTo={this.state.box.relateTo} ></BoxExtend>
+              <div className="card-extend">
+                <CardRow title='Type' />
+                <CardRow title='Time'/>
+                <CardRow title='Source'/>
+                <CardLead leadTo = {this.state.box.leadTo}  onExtend={this.props.onExtend} />
+                <CardRelate relateTo ={this.state.box.relateTo}  onExtend={this.props.onExtend} />
+              </div>
             </div>
     }
 }
@@ -46,18 +80,6 @@ class  BoxContent extends React.Component {
     }
 }
 
-class  BoxExtend extends React.Component {
-    render() {
-        return <div className="card-extend">
-            <CardRow title='Type' />
-            <CardRow title='Time'/>
-            <CardRow title='Source'/>
-            <CardLead leadTo = {this.props.leadTo}/>
-            <CardRelate relateTo = {this.props.relateTo} />
-        </div>
-    }
-}
-
 class CardRow extends React.Component {
     render() {
         return <div className="card-row">
@@ -72,19 +94,19 @@ class CardLead extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active : false,
-            ids : props.leadTo
+            active : false
         }
     }
 
     handleClick(event) {
         this.setState({active : !this.state.active});
-        if(this.state.active) {
+        if(!this.state.active) {
+            var ids = this.props.leadTo.split(',');
+            this.props.onExtend(ids);
         }
     }
 
     render() {
-        //var _style = "row-action plus-minus" + this.state.active ? 'active' : '';
         return  <div className="card-row card-lead">
             <div className="row-title">Lead</div>
             <div className={this.state.active ? 'row-action plus-minus active' : 'row-action plus-minus'}
@@ -95,12 +117,27 @@ class CardLead extends React.Component {
 }
 
 class CardRelate extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active : false,
+            ids : props.relateTo
+        }
+    }
+
+    handleClick(event) {
+        this.setState({active : !this.state.active});
+        if(this.state.active) {
+        }
+    }
+
     render() {
         return <div className="card-row card-relate">
             <div className="row-title">Relate</div>
-            <div className="row-action plus-minus" >&nbsp;</div>
+            <div className={this.state.active ? 'row-action plus-minus active' : 'row-action plus-minus'}
+                 onClick={this.handleClick.bind(this)} >&nbsp;</div>
         </div>
     }
 }
 
-ReactDOM.render(<Box />, document.getElementById('container'));
+ReactDOM.render(<BoxContainer boxes={['1']}/>, document.getElementById('container'))
