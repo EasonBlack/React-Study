@@ -8,19 +8,12 @@ import actions from '../redux/actions.js'
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
     render() {
         console.log(actions);
         return  <div>
              <h1>Todo List</h1>
              <TodoInput addTodo={this.props.actions.addTodo} />
-             <TodoList todos={this.props.todos}/>
+             <TodoList todos={this.props.todos} actions={this.props.actions}/>
         </div>;
     }
 }
