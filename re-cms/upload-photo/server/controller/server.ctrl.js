@@ -8,7 +8,7 @@ exports.getHtml = function(req, res) {
 }
 
 exports.setPic = function(req,res) {
-
+    console.log(req.body.img);
     var dataBuffer = new Buffer(req.body.img, 'base64');
     var _guidName = uuid.v1();
     fs.writeFile('Photos/' + _guidName + ".png", dataBuffer, function (err) {

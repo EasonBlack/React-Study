@@ -8,7 +8,9 @@ let actions = {
                 type: "POST",
                 url: "/upload",
                 data: {
-                    img: object
+                    width: object.width,
+                    height: object.height,
+                    img: object.img
                 },
                 success: function(response){
                     alert(response);

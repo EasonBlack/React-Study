@@ -4,7 +4,7 @@ class UploadSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            img : {}
+            photo : {}
         }
     }
 
@@ -14,19 +14,36 @@ class UploadSection extends Component {
         var file = files[0];
 
         if (files && file) {
-            var reader = new FileReader();
-            reader.readAsBinaryString(file);
-            reader.onload = function(readerEvt) {
+            var _URL = window.URL || window.webkitURL;
+            var img = new Image();
+            img.onload = function () {
+                var canvas = document.createElement('CANVAS');
+                var ctx = canvas.getContext('2d');
+                var dataURL;
+                var _h = this.height;
+                var _w = this.width;
+                canvas.height = _h;
+                canvas.width = _w;
+                ctx.drawImage(this, 0, 0);
+                dataURL = canvas.toDataURL('image/png').split(',')[1];
+                canvas = null;
+
                 self.setState({
-                    img:  btoa(readerEvt.target.result)
+                  photo: {
+                    width: _w,
+                    height: _h,
+                    img:  dataURL
+                  }
                 });
+
             };
+            img.src = _URL.createObjectURL(file);
         }
     }
 
     handleUpload(event) {
         event.preventDefault();
-        this.props.upload(this.state.img)
+        this.props.upload(this.state.photo)
     }
 
     render() {

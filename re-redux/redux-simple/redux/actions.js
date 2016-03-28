@@ -22,5 +22,3 @@ let actions = {
 }
 
 export default actions;
-
-//store.dispatch(addTodo('some text'));

@@ -19751,7 +19751,7 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -19780,42 +19780,58 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UploadSection).call(this, props));
 	
 	        _this.state = {
-	            img: {}
+	            photo: {}
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(UploadSection, [{
-	        key: "handleChange",
+	        key: 'handleChange',
 	        value: function handleChange(event) {
 	            var self = this;
 	            var files = event.target.files;
 	            var file = files[0];
 	
 	            if (files && file) {
-	                var reader = new FileReader();
-	                reader.readAsBinaryString(file);
-	                reader.onload = function (readerEvt) {
+	                var _URL = window.URL || window.webkitURL;
+	                var img = new Image();
+	                img.onload = function () {
+	                    var canvas = document.createElement('CANVAS');
+	                    var ctx = canvas.getContext('2d');
+	                    var dataURL;
+	                    var _h = this.height;
+	                    var _w = this.width;
+	                    canvas.height = _h;
+	                    canvas.width = _w;
+	                    ctx.drawImage(this, 0, 0);
+	                    dataURL = canvas.toDataURL('image/png').split(',')[1];
+	                    canvas = null;
+	
 	                    self.setState({
-	                        img: btoa(readerEvt.target.result)
+	                        photo: {
+	                            width: _w,
+	                            height: _h,
+	                            img: dataURL
+	                        }
 	                    });
 	                };
+	                img.src = _URL.createObjectURL(file);
 	            }
 	        }
 	    }, {
-	        key: "handleUpload",
+	        key: 'handleUpload',
 	        value: function handleUpload(event) {
 	            event.preventDefault();
-	            this.props.upload(this.state.img);
+	            this.props.upload(this.state.photo);
 	        }
 	    }, {
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
+	                'div',
 	                null,
-	                _react2.default.createElement("input", { type: "file", name: "file", id: "file", accept: "image/*", onChange: this.handleChange.bind(this) }),
-	                _react2.default.createElement("input", { type: "submit", id: "btnSubmit", onClick: this.handleUpload.bind(this) })
+	                _react2.default.createElement('input', { type: 'file', name: 'file', id: 'file', accept: 'image/*', onChange: this.handleChange.bind(this) }),
+	                _react2.default.createElement('input', { type: 'submit', id: 'btnSubmit', onClick: this.handleUpload.bind(this) })
 	            );
 	        }
 	    }]);
@@ -21170,7 +21186,9 @@
 	                type: "POST",
 	                url: "/upload",
 	                data: {
-	                    img: object
+	                    width: object.width,
+	                    height: object.height,
+	                    img: object.img
 	                },
 	                success: function success(response) {
 	                    alert(response);
