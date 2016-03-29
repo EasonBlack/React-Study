@@ -4,7 +4,7 @@ class UploadSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            photo : {}
+            photo: {}
         }
     }
 
@@ -29,11 +29,11 @@ class UploadSection extends Component {
                 canvas = null;
 
                 self.setState({
-                  photo: {
-                    width: _w,
-                    height: _h,
-                    img:  dataURL
-                  }
+                    photo: {
+                        width: _w,
+                        height: _h,
+                        img: dataURL
+                    }
                 });
 
             };
@@ -47,10 +47,14 @@ class UploadSection extends Component {
     }
 
     render() {
-        return  <div>
-               <input type="file" name="file" id="file" accept="image/*" onChange={this.handleChange.bind(this)}   />
-               <input type="submit" id="btnSubmit" onClick={this.handleUpload.bind(this)} />
+        return <div className='upload-section-wrapper'>
+            <div className='upload-section'>
+                <div className="filewrap">
+                    <input type="file" name="file" id="file" accept="image/*" onChange={this.handleChange.bind(this)}/>
+                </div>
+                <a className='submitwrap' id="btnSubmit" onClick={this.handleUpload.bind(this)}/>
             </div>
+        </div>
     }
 }
 

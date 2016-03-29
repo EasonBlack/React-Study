@@ -62,7 +62,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(162);
+	var _reactRedux = __webpack_require__(161);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -19691,15 +19691,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UploadSection = __webpack_require__(161);
+	var _UploadSection = __webpack_require__(160);
 	
 	var _UploadSection2 = _interopRequireDefault(_UploadSection);
 	
-	var _reactRedux = __webpack_require__(162);
+	var _reactRedux = __webpack_require__(161);
 	
-	var _redux = __webpack_require__(168);
+	var _redux = __webpack_require__(167);
 	
-	var _actions = __webpack_require__(180);
+	var _actions = __webpack_require__(179);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -19724,7 +19724,7 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
+	                'section',
 	                null,
 	                _react2.default.createElement(_UploadSection2.default, { upload: this.props.actions.upload })
 	            );
@@ -19747,8 +19747,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
 
 /***/ },
-/* 160 */,
-/* 161 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19829,9 +19828,17 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
-	                _react2.default.createElement('input', { type: 'file', name: 'file', id: 'file', accept: 'image/*', onChange: this.handleChange.bind(this) }),
-	                _react2.default.createElement('input', { type: 'submit', id: 'btnSubmit', onClick: this.handleUpload.bind(this) })
+	                { className: 'upload-section-wrapper' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'upload-section' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'filewrap' },
+	                        _react2.default.createElement('input', { type: 'file', name: 'file', id: 'file', accept: 'image/*', onChange: this.handleChange.bind(this) })
+	                    ),
+	                    _react2.default.createElement('a', { className: 'submitwrap', id: 'btnSubmit', onClick: this.handleUpload.bind(this) })
+	                )
 	            );
 	        }
 	    }]);
@@ -19842,7 +19849,7 @@
 	exports.default = UploadSection;
 
 /***/ },
-/* 162 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19850,11 +19857,11 @@
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(163);
+	var _Provider = __webpack_require__(162);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(165);
+	var _connect = __webpack_require__(164);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -19864,7 +19871,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 163 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -19874,7 +19881,7 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(164);
+	var _storeShape = __webpack_require__(163);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
@@ -19948,7 +19955,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 164 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19964,7 +19971,7 @@
 	});
 
 /***/ },
-/* 165 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -19976,27 +19983,27 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(164);
+	var _storeShape = __webpack_require__(163);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(166);
+	var _shallowEqual = __webpack_require__(165);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(167);
+	var _wrapActionCreators = __webpack_require__(166);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _isPlainObject = __webpack_require__(170);
+	var _isPlainObject = __webpack_require__(169);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _hoistNonReactStatics = __webpack_require__(178);
+	var _hoistNonReactStatics = __webpack_require__(177);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(179);
+	var _invariant = __webpack_require__(178);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -20292,7 +20299,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 166 */
+/* 165 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20323,7 +20330,7 @@
 	}
 
 /***/ },
-/* 167 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20331,7 +20338,7 @@
 	exports.__esModule = true;
 	exports["default"] = wrapActionCreators;
 	
-	var _redux = __webpack_require__(168);
+	var _redux = __webpack_require__(167);
 	
 	function wrapActionCreators(actionCreators) {
 	  return function (dispatch) {
@@ -20340,7 +20347,7 @@
 	}
 
 /***/ },
-/* 168 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20348,27 +20355,27 @@
 	exports.__esModule = true;
 	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 	
-	var _createStore = __webpack_require__(169);
+	var _createStore = __webpack_require__(168);
 	
 	var _createStore2 = _interopRequireDefault(_createStore);
 	
-	var _combineReducers = __webpack_require__(173);
+	var _combineReducers = __webpack_require__(172);
 	
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 	
-	var _bindActionCreators = __webpack_require__(175);
+	var _bindActionCreators = __webpack_require__(174);
 	
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 	
-	var _applyMiddleware = __webpack_require__(176);
+	var _applyMiddleware = __webpack_require__(175);
 	
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 	
-	var _compose = __webpack_require__(177);
+	var _compose = __webpack_require__(176);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
-	var _warning = __webpack_require__(174);
+	var _warning = __webpack_require__(173);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -20392,7 +20399,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 169 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20401,7 +20408,7 @@
 	exports.ActionTypes = undefined;
 	exports["default"] = createStore;
 	
-	var _isPlainObject = __webpack_require__(170);
+	var _isPlainObject = __webpack_require__(169);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
@@ -20613,11 +20620,11 @@
 	}
 
 /***/ },
-/* 170 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isHostObject = __webpack_require__(171),
-	    isObjectLike = __webpack_require__(172);
+	var isHostObject = __webpack_require__(170),
+	    isObjectLike = __webpack_require__(171);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -20685,7 +20692,7 @@
 
 
 /***/ },
-/* 171 */
+/* 170 */
 /***/ function(module, exports) {
 
 	/**
@@ -20711,7 +20718,7 @@
 
 
 /***/ },
-/* 172 */
+/* 171 */
 /***/ function(module, exports) {
 
 	/**
@@ -20745,7 +20752,7 @@
 
 
 /***/ },
-/* 173 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20753,13 +20760,13 @@
 	exports.__esModule = true;
 	exports["default"] = combineReducers;
 	
-	var _createStore = __webpack_require__(169);
+	var _createStore = __webpack_require__(168);
 	
-	var _isPlainObject = __webpack_require__(170);
+	var _isPlainObject = __webpack_require__(169);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(174);
+	var _warning = __webpack_require__(173);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -20878,7 +20885,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 174 */
+/* 173 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20907,7 +20914,7 @@
 	}
 
 /***/ },
-/* 175 */
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20963,7 +20970,7 @@
 	}
 
 /***/ },
-/* 176 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20973,7 +20980,7 @@
 	exports.__esModule = true;
 	exports["default"] = applyMiddleware;
 	
-	var _compose = __webpack_require__(177);
+	var _compose = __webpack_require__(176);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
@@ -21025,7 +21032,7 @@
 	}
 
 /***/ },
-/* 177 */
+/* 176 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21059,7 +21066,7 @@
 	}
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports) {
 
 	/**
@@ -21105,7 +21112,7 @@
 
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21163,7 +21170,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21172,7 +21179,7 @@
 	    value: true
 	});
 	
-	var _jquery = __webpack_require__(184);
+	var _jquery = __webpack_require__(180);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -21202,84 +21209,7 @@
 	exports.default = actions;
 
 /***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = configureStore;
-	
-	var _redux = __webpack_require__(168);
-	
-	var _reducer = __webpack_require__(182);
-	
-	var _reducer2 = _interopRequireDefault(_reducer);
-	
-	var _reduxThunk = __webpack_require__(183);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var finalCreateStore = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default))(_redux.createStore);
-	
-	function configureStore() {
-	    var initialState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	
-	    return finalCreateStore(_reducer2.default, initialState);
-	}
-
-/***/ },
-/* 182 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = reducer;
-	function reducer(state, action) {
-	    switch (action.type) {
-	        case "FILE_CHANGE":
-	
-	            return action.object;
-	
-	        default:
-	            console.log('reducer trigger');
-	            return state;
-	
-	    }
-	}
-
-/***/ },
-/* 183 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
-	
-	  return function (next) {
-	    return function (action) {
-	      if (typeof action === 'function') {
-	        return action(dispatch, getState);
-	      }
-	
-	      return next(action);
-	    };
-	  };
-	}
-
-/***/ },
-/* 184 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31125,6 +31055,83 @@
 	return jQuery;
 	}));
 
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = configureStore;
+	
+	var _redux = __webpack_require__(167);
+	
+	var _reducer = __webpack_require__(182);
+	
+	var _reducer2 = _interopRequireDefault(_reducer);
+	
+	var _reduxThunk = __webpack_require__(183);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var finalCreateStore = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default))(_redux.createStore);
+	
+	function configureStore() {
+	    var initialState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	
+	    return finalCreateStore(_reducer2.default, initialState);
+	}
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = reducer;
+	function reducer(state, action) {
+	    switch (action.type) {
+	        case "FILE_CHANGE":
+	
+	            return action.object;
+	
+	        default:
+	            console.log('reducer trigger');
+	            return state;
+	
+	    }
+	}
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
+	
+	  return function (next) {
+	    return function (action) {
+	      if (typeof action === 'function') {
+	        return action(dispatch, getState);
+	      }
+	
+	      return next(action);
+	    };
+	  };
+	}
 
 /***/ }
 /******/ ]);

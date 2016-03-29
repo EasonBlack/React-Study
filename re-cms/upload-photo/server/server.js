@@ -9,3 +9,4 @@ app.listen(3000, function () {
 
 require('./config/express')(app,express);
 require('./config/routes')(app);
+require('./config/mongo');

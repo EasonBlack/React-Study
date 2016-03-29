@@ -8,9 +8,9 @@ import actions from '../redux/actions.js'
 class App extends Component {
 
     render() {
-        return  <div>
+        return  <section>
            <UploadSection upload={this.props.actions.upload} />
-        </div>;
+        </section>;
     }
 }
 
