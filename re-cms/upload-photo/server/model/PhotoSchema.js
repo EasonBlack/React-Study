@@ -9,9 +9,12 @@ var PointSchema = new Schema({
 });
 
 var PhotoSchema = new Schema({
+    id: String,
     file: String,
     w: String,
     h: String,
+    screenWidth: String,
+    screenHeight: String,
     points: [PointSchema]
 });
 

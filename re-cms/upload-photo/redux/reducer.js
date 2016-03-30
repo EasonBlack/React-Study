@@ -15,6 +15,7 @@ export default function reducer(state, action) {
                     id: getId(state)
                 }, ...state.points]
             });
+
         default:
             console.log('reducer trigger');
             return state;

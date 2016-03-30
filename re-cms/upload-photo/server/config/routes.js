@@ -14,6 +14,8 @@ var upload = multer({ storage: storage });
 
 module.exports = function(app){
     app.get('/', appCtrl.getHtml );
+    app.get('/list', appCtrl.getList );
     app.post('/upload', appCtrl.setPic);
+    app.post('/savepoints', appCtrl.savePoints)
 }
 

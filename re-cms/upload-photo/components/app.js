@@ -11,7 +11,10 @@ class App extends Component {
     render() {
         console.log(this.props.points);
         return  <section>
-           <UploadSection upload={this.props.actions.upload} addpoint={this.props.actions.addPoint} />
+           <UploadSection upload={this.props.actions.upload}
+                          addpoint={this.props.actions.addPoint}
+                          points={this.props.points}
+                          savepoints={this.props.actions.savePoints}/>
            <ImagePoint points={this.props.points} />
         </section>;
     }
