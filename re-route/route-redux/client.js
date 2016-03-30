@@ -6,7 +6,6 @@ import configureStore from './redux/store.js';
 import { Provider  } from 'react-redux';
 
 let store = configureStore({
-    text: 'xxxxx'
 });
 
 ReactDOM.render((

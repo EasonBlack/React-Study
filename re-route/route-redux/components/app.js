@@ -8,22 +8,14 @@ import { bindActionCreators } from 'redux'
 import actions from '../redux/actions.js'
 
 
-var UserWrapper = React.createClass({
-    render: function () {
-        return (
-            <Comments myprop="myvalue" />
-        );
-    }
-});
-
-
 class App extends Component {
 
     render() {
+        console.log('props: ' , this.props.text);
         return   <Router history={browserHistory}>
-            <Route path="/" component={Main}>
+            <Route path="/" component={Main}  textdisplay={this.props.text}>
                 <Route path="about" component={About} foo='aaaa' testhandle={this.props.actions.testHandle}/>
-                <Route path="user" component={User}  text={this.props.text} />
+                <Route path="user" component={User}  textdisplay={this.props.text} />
                 <Route path="*" component={About}/>
             </Route>
         </Router>

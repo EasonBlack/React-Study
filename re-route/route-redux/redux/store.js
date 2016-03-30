@@ -8,5 +8,6 @@ let finalCreateStore = compose(
 )(createStore)
 
 export default function configureStore(initialState = {}) {
+    console.log('trigger store');
     return finalCreateStore(reducer, initialState)
 }
