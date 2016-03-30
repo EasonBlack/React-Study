@@ -5,7 +5,12 @@ import App from '../components/app.js';
 import configureStore from '../redux/store.js';
 import { Provider  } from 'react-redux';
 
-let store = configureStore({});
+let initialState = {
+    points: [
+    ]
+}
+
+let store = configureStore(initialState);
 
 ReactDOM.render(
     <Provider store={store}>

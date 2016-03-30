@@ -17,6 +17,18 @@ let actions = {
                 }
             })
         }
+    },
+
+    addPoint: function(object) {
+        return {
+            type: 'ADD_POINT',
+            x: object.x,
+            y: object.y
+        }
+    },
+
+    savePoints: function(object){
+
     }
 
 }

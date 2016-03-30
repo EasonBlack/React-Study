@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import UploadSection from './UploadSection.js'
+import ImagePoint from './ImagePoint.js'
 
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -8,8 +9,10 @@ import actions from '../redux/actions.js'
 class App extends Component {
 
     render() {
+        console.log(this.props.points);
         return  <section>
-           <UploadSection upload={this.props.actions.upload} />
+           <UploadSection upload={this.props.actions.upload} addpoint={this.props.actions.addPoint} />
+           <ImagePoint points={this.props.points} />
         </section>;
     }
 }

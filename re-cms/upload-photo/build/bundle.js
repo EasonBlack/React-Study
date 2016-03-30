@@ -58,20 +58,24 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _store = __webpack_require__(181);
+	var _store = __webpack_require__(182);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(161);
+	var _reactRedux = __webpack_require__(162);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _store2.default)({});
+	var initialState = {
+	    points: []
+	};
+	
+	var store = (0, _store2.default)(initialState);
 	
 	_reactDom2.default.render(_react2.default.createElement(
-	   _reactRedux.Provider,
-	   { store: store },
-	   _react2.default.createElement(_app2.default, null)
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_app2.default, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -19695,11 +19699,15 @@
 	
 	var _UploadSection2 = _interopRequireDefault(_UploadSection);
 	
-	var _reactRedux = __webpack_require__(161);
+	var _ImagePoint = __webpack_require__(161);
 	
-	var _redux = __webpack_require__(167);
+	var _ImagePoint2 = _interopRequireDefault(_ImagePoint);
 	
-	var _actions = __webpack_require__(179);
+	var _reactRedux = __webpack_require__(162);
+	
+	var _redux = __webpack_require__(168);
+	
+	var _actions = __webpack_require__(180);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -19723,10 +19731,12 @@
 	    _createClass(App, [{
 	        key: 'render',
 	        value: function render() {
+	            console.log(this.props.points);
 	            return _react2.default.createElement(
 	                'section',
 	                null,
-	                _react2.default.createElement(_UploadSection2.default, { upload: this.props.actions.upload })
+	                _react2.default.createElement(_UploadSection2.default, { upload: this.props.actions.upload, addpoint: this.props.actions.addPoint }),
+	                _react2.default.createElement(_ImagePoint2.default, { points: this.props.points })
 	            );
 	        }
 	    }]);
@@ -19779,7 +19789,8 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UploadSection).call(this, props));
 	
 	        _this.state = {
-	            photo: {}
+	            photo: {},
+	            temporaryImage: ''
 	        };
 	        return _this;
 	    }
@@ -19800,6 +19811,7 @@
 	                    var dataURL;
 	                    var _h = this.height;
 	                    var _w = this.width;
+	                    var _src = this.src;
 	                    canvas.height = _h;
 	                    canvas.width = _w;
 	                    ctx.drawImage(this, 0, 0);
@@ -19807,6 +19819,7 @@
 	                    canvas = null;
 	
 	                    self.setState({
+	                        temporaryImage: _src,
 	                        photo: {
 	                            width: _w,
 	                            height: _h,
@@ -19814,6 +19827,7 @@
 	                        }
 	                    });
 	                };
+	
 	                img.src = _URL.createObjectURL(file);
 	            }
 	        }
@@ -19824,11 +19838,22 @@
 	            this.props.upload(this.state.photo);
 	        }
 	    }, {
+	        key: 'addPoint',
+	        value: function addPoint(event) {
+	            event.preventDefault();
+	            var _obj = {
+	                x: event.clientX,
+	                y: event.clientY
+	            };
+	            this.props.addpoint(_obj);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'upload-section-wrapper' },
+	                _react2.default.createElement('img', { className: 'upload-image', src: this.state.temporaryImage, onClick: this.addPoint.bind(this) }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'upload-section' },
@@ -19854,14 +19879,69 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ImagePoint = function (_Component) {
+	    _inherits(ImagePoint, _Component);
+	
+	    function ImagePoint() {
+	        _classCallCheck(this, ImagePoint);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ImagePoint).apply(this, arguments));
+	    }
+	
+	    _createClass(ImagePoint, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.props.points.map(function (point) {
+	                    var _style = {
+	                        top: point.y,
+	                        left: point.x
+	                    };
+	                    return _react2.default.createElement('div', { className: 'image-point', key: point.id, style: _style });
+	                }.bind(this))
+	            );
+	        }
+	    }]);
+	
+	    return ImagePoint;
+	}(_react.Component);
+	
+	exports.default = ImagePoint;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(162);
+	var _Provider = __webpack_require__(163);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(164);
+	var _connect = __webpack_require__(165);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -19871,7 +19951,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -19881,7 +19961,7 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(163);
+	var _storeShape = __webpack_require__(164);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
@@ -19955,7 +20035,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19971,7 +20051,7 @@
 	});
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -19983,27 +20063,27 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(163);
+	var _storeShape = __webpack_require__(164);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(165);
+	var _shallowEqual = __webpack_require__(166);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(166);
+	var _wrapActionCreators = __webpack_require__(167);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _isPlainObject = __webpack_require__(169);
+	var _isPlainObject = __webpack_require__(170);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _hoistNonReactStatics = __webpack_require__(177);
+	var _hoistNonReactStatics = __webpack_require__(178);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(178);
+	var _invariant = __webpack_require__(179);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -20299,7 +20379,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20330,7 +20410,7 @@
 	}
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20338,7 +20418,7 @@
 	exports.__esModule = true;
 	exports["default"] = wrapActionCreators;
 	
-	var _redux = __webpack_require__(167);
+	var _redux = __webpack_require__(168);
 	
 	function wrapActionCreators(actionCreators) {
 	  return function (dispatch) {
@@ -20347,7 +20427,7 @@
 	}
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20355,27 +20435,27 @@
 	exports.__esModule = true;
 	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 	
-	var _createStore = __webpack_require__(168);
+	var _createStore = __webpack_require__(169);
 	
 	var _createStore2 = _interopRequireDefault(_createStore);
 	
-	var _combineReducers = __webpack_require__(172);
+	var _combineReducers = __webpack_require__(173);
 	
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 	
-	var _bindActionCreators = __webpack_require__(174);
+	var _bindActionCreators = __webpack_require__(175);
 	
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 	
-	var _applyMiddleware = __webpack_require__(175);
+	var _applyMiddleware = __webpack_require__(176);
 	
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 	
-	var _compose = __webpack_require__(176);
+	var _compose = __webpack_require__(177);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
-	var _warning = __webpack_require__(173);
+	var _warning = __webpack_require__(174);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -20399,7 +20479,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20408,7 +20488,7 @@
 	exports.ActionTypes = undefined;
 	exports["default"] = createStore;
 	
-	var _isPlainObject = __webpack_require__(169);
+	var _isPlainObject = __webpack_require__(170);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
@@ -20620,11 +20700,11 @@
 	}
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isHostObject = __webpack_require__(170),
-	    isObjectLike = __webpack_require__(171);
+	var isHostObject = __webpack_require__(171),
+	    isObjectLike = __webpack_require__(172);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -20692,7 +20772,7 @@
 
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports) {
 
 	/**
@@ -20718,7 +20798,7 @@
 
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports) {
 
 	/**
@@ -20752,7 +20832,7 @@
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20760,13 +20840,13 @@
 	exports.__esModule = true;
 	exports["default"] = combineReducers;
 	
-	var _createStore = __webpack_require__(168);
+	var _createStore = __webpack_require__(169);
 	
-	var _isPlainObject = __webpack_require__(169);
+	var _isPlainObject = __webpack_require__(170);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(173);
+	var _warning = __webpack_require__(174);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -20885,7 +20965,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20914,7 +20994,7 @@
 	}
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20970,7 +21050,7 @@
 	}
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20980,7 +21060,7 @@
 	exports.__esModule = true;
 	exports["default"] = applyMiddleware;
 	
-	var _compose = __webpack_require__(176);
+	var _compose = __webpack_require__(177);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
@@ -21032,7 +21112,7 @@
 	}
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21066,7 +21146,7 @@
 	}
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports) {
 
 	/**
@@ -21112,7 +21192,7 @@
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21170,7 +21250,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21179,7 +21259,7 @@
 	    value: true
 	});
 	
-	var _jquery = __webpack_require__(180);
+	var _jquery = __webpack_require__(181);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -21202,14 +21282,24 @@
 	                }
 	            });
 	        };
-	    }
+	    },
+	
+	    addPoint: function addPoint(object) {
+	        return {
+	            type: 'ADD_POINT',
+	            x: object.x,
+	            y: object.y
+	        };
+	    },
+	
+	    savePoints: function savePoints(object) {}
 	
 	};
 	
 	exports.default = actions;
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31057,7 +31147,7 @@
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31067,13 +31157,13 @@
 	});
 	exports.default = configureStore;
 	
-	var _redux = __webpack_require__(167);
+	var _redux = __webpack_require__(168);
 	
-	var _reducer = __webpack_require__(182);
+	var _reducer = __webpack_require__(183);
 	
 	var _reducer2 = _interopRequireDefault(_reducer);
 	
-	var _reduxThunk = __webpack_require__(183);
+	var _reduxThunk = __webpack_require__(184);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -31082,13 +31172,13 @@
 	var finalCreateStore = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default))(_redux.createStore);
 	
 	function configureStore() {
-	    var initialState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    var initialState = arguments.length <= 0 || arguments[0] === undefined ? { points: [] } : arguments[0];
 	
 	    return finalCreateStore(_reducer2.default, initialState);
 	}
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -31096,13 +31186,29 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	exports.default = reducer;
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	function getId(state) {
+	    return state.points.reduce(function (maxId, point) {
+	        return Math.max(point.id, maxId);
+	    }, -1) + 1;
+	}
+	
 	function reducer(state, action) {
 	    switch (action.type) {
-	        case "FILE_CHANGE":
-	
-	            return action.object;
-	
+	        case "ADD_POINT":
+	            return _extends({}, state, {
+	                points: [{
+	                    x: action.x,
+	                    y: action.y,
+	                    id: getId(state)
+	                }].concat(_toConsumableArray(state.points))
+	            });
 	        default:
 	            console.log('reducer trigger');
 	            return state;
@@ -31111,7 +31217,7 @@
 	}
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports) {
 
 	'use strict';

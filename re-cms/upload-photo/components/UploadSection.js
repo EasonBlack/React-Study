@@ -4,7 +4,8 @@ class UploadSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            photo: {}
+            photo: {},
+            temporaryImage: ''
         }
     }
 
@@ -22,6 +23,7 @@ class UploadSection extends Component {
                 var dataURL;
                 var _h = this.height;
                 var _w = this.width;
+                var _src = this.src;
                 canvas.height = _h;
                 canvas.width = _w;
                 ctx.drawImage(this, 0, 0);
@@ -29,14 +31,15 @@ class UploadSection extends Component {
                 canvas = null;
 
                 self.setState({
+                    temporaryImage: _src,
                     photo: {
                         width: _w,
                         height: _h,
                         img: dataURL
                     }
                 });
-
             };
+
             img.src = _URL.createObjectURL(file);
         }
     }
@@ -46,8 +49,18 @@ class UploadSection extends Component {
         this.props.upload(this.state.photo)
     }
 
+    addPoint(event) {
+        event.preventDefault();
+        var _obj = {
+            x: event.clientX,
+            y: event.clientY
+        }
+        this.props.addpoint(_obj);
+    }
+
     render() {
         return <div className='upload-section-wrapper'>
+            <img className='upload-image' src={this.state.temporaryImage} onClick={this.addPoint.bind(this)}/>
             <div className='upload-section'>
                 <div className="filewrap">
                     <input type="file" name="file" id="file" accept="image/*" onChange={this.handleChange.bind(this)}/>

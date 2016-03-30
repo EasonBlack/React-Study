@@ -7,6 +7,6 @@ let finalCreateStore = compose(
 )(createStore)
 
 
-export default function configureStore(initialState = {}) {
+export default function configureStore(initialState = {points: []}) {
     return finalCreateStore(reducer, initialState)
 }
