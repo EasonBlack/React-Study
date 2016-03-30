@@ -1,16 +1,12 @@
 import React , { Component } from 'react';
 import {  Link  } from 'react-router';
+import {connect} from 'react-redux';
 
 class Main extends Component {
-    constructor(props) {
-        console.log('first:', props);
-        super(props);
-        console.log('second:', props);
-    }
 
     render() {
         return  <section>
-            {this.props.route.textdisplay}
+            {this.props.text}
             <div className="master">
                 <ul>
                     <li><Link to={'/user'}>user</Link></li>
@@ -24,4 +20,9 @@ class Main extends Component {
     }
 }
 
-export default Main;
+var mapStateToProps = function(state){
+    // This component will have access to `appstate.heroes` through `this.props.heroes`
+    return {text : state.text};
+};
+
+export default connect(mapStateToProps)(Main);
