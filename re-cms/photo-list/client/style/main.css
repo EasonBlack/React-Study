@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body,
+html,
+section,
+#app {
+  height: 100%;
+}
+.route-view .photo-list {
+  margin: 10px;
+}
+.route-view .photo-list .single-image {
+  width: 150px;
+  height: 150px;
+}
+.route-view .photo-list .hidden {
+  display: none;
+}
+.route-view .photo-list .show-big-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.route-view .photo-list .image-point {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #880000;
+}
