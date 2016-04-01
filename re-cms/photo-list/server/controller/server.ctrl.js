@@ -20,6 +20,7 @@ exports.savePoints = function (req, res) {
     console.log(id);
     Photos.findOne({id: id }, function (err, photo) {
         for(var i=0;i<points.length;i++){
+            points[i].id = uuid.v1();
             photo.points.push(points[i]);
         }
         photo.save(function (err) {

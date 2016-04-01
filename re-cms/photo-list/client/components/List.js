@@ -17,7 +17,8 @@ class List extends Component {
         event.preventDefault();
         event.stopPropagation();
         this.setState({
-            bigDisplayFile: photo.file
+            bigDisplayFile: photo.file,
+            currentPhoto: photo
         })
     }
 
@@ -30,26 +31,42 @@ class List extends Component {
     render() {
 
         var OrignPhotoClass = classSet({
-            'hidden': this.state.bigDisplayFile == '',
+            'hidden': this.state.bigDisplayFile =='' ,
             'show-big-image': this.state.bigDisplayFile != ''
         });
-        console.log(this.props.photos);
+
+        var _current= {};
+        if(this.state.currentPhoto) {
+            _current = {
+                points : this.state.currentPhoto.points,
+                w : this.state.currentPhoto.w,
+                h : this.state.currentPhoto.h,
+                screenWidth : this.state.currentPhoto.screenWidth,
+                screenHeight : this.state.currentPhoto.screenHeight,
+            }
+        }
 
         var self = this;
         return (
-            <div className="photo-list" onClick={this.cancelBigPhoto.bind(this)}>
+            <div className="photo-list wholepage" onClick={this.cancelBigPhoto.bind(this)}>
                 {
                     this.props.photos && this.props.photos.map(function (photo) {
+
                         return (<div key={photo.id}>
                             <img className='single-image' src={photo.file}
-                                 onClick={self.photoShowDetail.bind(self, photo)}/>
-                            <img className={OrignPhotoClass} src={this.state.bigDisplayFile}>
-                                <ImagePoint points={photo.points}/>
-                            </img>
-
+                                 onClick={self.photoShowDetail.bind(self, photo)} />
                         </div>)
                     }.bind(this))
                 }
+                <div className="wholepage big-image-wrapper"  >
+                    <div className={OrignPhotoClass}>
+                        <img  src={self.state.bigDisplayFile} />
+                        <ImagePoint points={_current.points}
+                                    w={_current.w} h={_current.h}
+                                    screenWidth={_current.screenWidth}
+                                    screenHeight={_current.screenHeight}/>
+                    </div>
+                </div>
             </div>
         )
     }

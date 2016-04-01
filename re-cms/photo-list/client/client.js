@@ -6,6 +6,8 @@ import configureStore from './redux/store.js';
 import { Provider  } from 'react-redux';
 
 let initialState = {
+    photos: [],
+    points: []
 }
 
 let store = configureStore(initialState);

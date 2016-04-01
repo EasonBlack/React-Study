@@ -6,11 +6,12 @@ class Main extends Component {
     render() {
         return  <section className="container">
             <div className="master">
-                <ul>
+                <ul className="menu-list">
                     <li><Link to={'/list'}>List</Link></li>
+                    <li><Link to={'/photo'}>Photo</Link></li>
                 </ul>
             </div>
-            <div className='route-view'>
+            <div className='route-view wholepage '>
                 {this.props.children}
             </div>
         </section>;

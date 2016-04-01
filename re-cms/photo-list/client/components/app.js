@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import Main from './Main.js';
 import List from './List.js';
+import Photo from './Photo.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -14,6 +15,7 @@ class App extends Component {
         return   <Router history={browserHistory}>
             <Route path="/" component={Main}  >
                 <Route path="list" component={List} actions={this.props.actions} />
+                <Route path="photo" component={Photo} actions={this.props.actions} />
                 <Route path="*" component={List}/>
             </Route>
         </Router>
