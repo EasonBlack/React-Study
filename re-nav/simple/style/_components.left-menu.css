@@ -1,0 +1,11 @@
+.left-menu__bg_blue {
+  background-color: #006699;
+}
+.left-menu__height {
+  min-height: 100%;
+}
+.left-menu__item {
+  padding: 5px 20px;
+  color: white;
+  font-size: 18px;
+}
