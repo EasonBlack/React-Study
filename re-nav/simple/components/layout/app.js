@@ -11,10 +11,10 @@ class App extends Component {
     }
 
     render() {
-        return <div className='flex__row wrapper__min-height_100'>
+        return <div className='wrapper__min-height_100 flex__row wrapper__min-height_100'>
             <LeftMenu></LeftMenu>
             <div className='flex__row_1'>
-                {this.state.data}
+                {this.props.children}
             </div>
         </div>;
     }
