@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+ul {
+  list-style: none;
+}
+.flex__row {
+  display: flex;
+  flex-direction: row;
+}
+.flex__row_200 {
+  width: 200px;
+}
+.flex__row_1 {
+  flex: 1;
+}
+.wrapper__height_100 {
+  height: 100%;
+}
+.wrapper__min-height_100 {
+  height: 100%;
+}
+.wrapper__width_100 {
+  width: 100%;
+}
+.left-menu__bg_blue {
+  background-color: #006699;
+}
+.left-menu__height {
+  min-height: 100%;
+}
+.left-menu__item {
+  padding: 5px 20px;
+  color: white;
+  font-size: 18px;
+}
