@@ -12,21 +12,6 @@ export function addView2() {
     }
 }
 
-// let actions = {
-//     addView1: function() {
-//         return {
-//             type: 'ADD_VIEW1'
-//         }
-//     },
-//
-//     addView2: function () {
-//         return {
-//             type: 'ADD_VIEW2'
-//         };
-//     }
-// }
-//
-// export default actions;
 
 
 
