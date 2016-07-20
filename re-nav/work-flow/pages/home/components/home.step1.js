@@ -1,25 +1,21 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../../redux/actions.js';
 
 class HomeStep1 extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
-        this.handleNextStep = this.handleNextStep.bind(this);
-    }
-
-    handleNextStep() {
-        console.log(this.props);
-        this.props.onNextStep(2);
     }
 
     render() {
         return <div>
             <div>this is Step1</div>
             <div>
-                <button onClick={this.handleNextStep}>Next</button>
+                <button onClick={()=>this.props.nextStep(2)}>Next</button>
             </div>
         </div>;
     }
 }
 
-export default HomeStep1;
+export default connect(null, actions)(HomeStep1);
+//export default HomeStep1;

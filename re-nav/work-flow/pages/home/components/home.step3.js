@@ -1,24 +1,20 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../../redux/actions.js';
 
 class HomeStep3 extends Component {
     constructor(props) {
         super(props);
-        this.handleConfirm = this.handleConfirm.bind(this);
-    }
-
-    handleConfirm() {
-        console.log(this.props);
-        this.props.onConfirm(2);
     }
 
     render() {
         return <div>
             <div>this is Step3</div>
             <div>
-                <button onClick={this.handleConfirm}>Confirm</button>
+                <button onClick={()=>this.props.confirm()}>Confirm</button>
             </div>
         </div>;
     }
 }
 
-export default HomeStep3;
+export default connect(null, actions)(HomeStep3);

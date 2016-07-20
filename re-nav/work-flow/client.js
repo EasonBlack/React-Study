@@ -6,7 +6,10 @@ import {createStore} from 'redux';
 import reducer from './reducer/index';
 import {Provider} from 'react-redux';
 
-let store = createStore(reducer);
+let initialState = {
+    home: {step: 2}
+}
+let store = createStore(reducer, initialState);
 
 ReactDOM.render(
     <Provider store={store}>
