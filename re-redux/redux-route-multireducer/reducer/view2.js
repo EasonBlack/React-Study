@@ -1,4 +1,4 @@
-export default function reducer(state= {view2count: 0}, action) {
+export default function reducer(state= {view2count: 0}, action={}) {
     switch (action.type) {
         case 'ADD_VIEW2':
             var _count = state.view2count;
