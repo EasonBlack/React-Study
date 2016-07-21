@@ -28,6 +28,9 @@ class HomePage extends Component {
         return <div>
             this is Home
             {_stepComponent}
+            <div>
+                {JSON.stringify(this.props.home.info, null, 2) }
+            </div>
         </div>;
     }
 }

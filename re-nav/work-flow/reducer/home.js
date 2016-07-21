@@ -6,8 +6,12 @@ export default function reducer(state = {step: 1}, action={}) {
             });
         case "CONFIRM":
             return Object.assign({}, state, {
-                step: 1
+                info: action.info,step:1
             });
+        case "SETINFO":
+            return Object.assign({},state,{
+                info:action.info
+            })
         default:
             return state;
     }

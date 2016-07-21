@@ -5,11 +5,20 @@ export function nextStep(step) {
     }
 }
 
-export function confirm() {
+export function confirm(info) {
     return {
-        type: 'CONFIRM'
+        type: 'CONFIRM',
+        info: info
     }
 }
+
+export function setInfo(info) {
+    return {
+        type: 'SETINFO',
+        info: info
+    }
+}
+
 
 
 

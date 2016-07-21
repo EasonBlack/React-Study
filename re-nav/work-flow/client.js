@@ -7,7 +7,10 @@ import reducer from './reducer/index';
 import {Provider} from 'react-redux';
 
 let initialState = {
-    home: {step: 2}
+    home: {
+        step: 1,
+        info : {}
+    }
 }
 let store = createStore(reducer, initialState);
 
