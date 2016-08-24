@@ -1,6 +1,6 @@
 [
-  {"name": "aaaaaa"},
-  {"name": "bbbbbb"},
-  {"name": "cccccc"},
-  {"name": "dddddd"}
+  {"name": "aaaaaa", "type": "1"},
+  {"name": "bbbbbb", "type": "2"},
+  {"name": "cccccc", "type": "3"},
+  {"name": "dddddd", "type": "4"}
 ]

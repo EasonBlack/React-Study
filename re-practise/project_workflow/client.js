@@ -7,10 +7,11 @@ import {Provider} from 'react-redux';
 import configureStore from './store.js';
 
 import  App  from './components/layout/app.js';
-import  ProjectList from './components/pages/project/project-list.js';
-import  Project  from './components/pages/project/project.js';
+import  ProjectList from './components/pages/project/ProjectList/project-list.js';
+import  Project  from './components/pages/project/Project/project.js';
+import  ProjectFeed from './components/pages/project/ProjectFeed/project-feed.js';
 import  DataBase  from './components/pages/database/database.js';
-import ProjectFeed from './components/pages/project/projectfeed/project-feed.js';
+
 
 let initialState = {}
 
@@ -21,7 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path="/" component={App}>
-                <Route path="/projectlist" component={ProjectList} />
+                <Route path="/projectlist" component={ProjectList}/>
                 <Route path="/project/:projectId" component={Project}>
                     <Route path="/project/:projectId/feed" component={ProjectFeed}/>
                 </Route>

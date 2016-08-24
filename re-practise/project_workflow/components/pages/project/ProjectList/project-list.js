@@ -2,31 +2,23 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import { Link } from 'react-router'
-import projectListActions from '../../../actions/projectList.js';
+import projectListActions from '../../../../actions/projectList.js';
+import ProjectCardList from './ProjectCardList/project-card-list.js';
 
 class ProjectList extends Component {
 
     constructor(props) {
         super(props);
-        this.state= {
-            bbb: '12'
-        }
         this.props.fetch();
-        console.log(this.props);
     }
 
-
     render() {
-        console.log(this.props.projects);
         return (
-            <div>
-                {
-                    this.props.projects && this.props.projects.map(function (p) {
-                        return (<div>
-                           {p.name}
-                        </div>)
-                    }.bind(this))
-                }
+            <div >
+                <div className="project-list-title">My Project</div>
+                <div className="project-list-back">
+                    <ProjectCardList projects={this.props.projects} />
+                </div>
             </div>
 
         )
