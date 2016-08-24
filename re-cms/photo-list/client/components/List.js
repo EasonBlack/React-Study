@@ -29,7 +29,7 @@ class List extends Component {
     }
 
     render() {
-
+        console.log(this.props);
         var OrignPhotoClass = classSet({
             'hidden': this.state.bigDisplayFile =='' ,
             'show-big-image': this.state.bigDisplayFile != ''
