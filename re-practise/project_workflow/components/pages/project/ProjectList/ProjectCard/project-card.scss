@@ -1,7 +1,13 @@
 
 .project-card {
   width: 300px;
-  height: 200px;
   background-color: white;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+
+  height: 300px;
+  border: 1px solid steelblue;
+  flex: 0 0 300px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: auto;
 }

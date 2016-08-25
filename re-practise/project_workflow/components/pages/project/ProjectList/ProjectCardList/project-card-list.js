@@ -9,13 +9,13 @@ class ProjectCardList extends Component {
     }
 
     render() {
-        return <div className="flex__row">
-            {
-                this.props.projects && this.props.projects.map(function (p) {
-                    return <ProjectCard  project={p} />
-                }.bind(this))
-            }
-        </div>
+        return <div className="project-card-list">
+                {
+                    this.props.projects && this.props.projects.map(function (p, key) {
+                        return <ProjectCard key={key} project={p}/>
+                    }.bind(this))
+                }
+            </div>
     }
 
 }
