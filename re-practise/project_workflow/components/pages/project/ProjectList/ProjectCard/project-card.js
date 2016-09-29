@@ -8,8 +8,10 @@ class ProjectCard extends Component {
 
     render() {
         return <div className="project-card">
-            <div>{this.props.project.name}</div>
-            <div>{this.props.project.type}</div>
+            <div className="card">
+                <div>{this.props.project.name}</div>
+                <div>{this.props.project.type}</div>
+            </div>
         </div>
     }
 
