@@ -17,12 +17,14 @@
 
 @media (min-width: 500px) {
   .project-card {
+    min-width: 50%;
     max-width: 50%;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 890px) {
   .project-card {
+    min-width: 33.33333%;
     max-width: 33.33333%;
   }
 }
@@ -30,6 +32,7 @@
 @media (min-width: 1240px) {
   .project-card {
     max-width: 25%;
+    min-width: 25%;
   }
 }
 
