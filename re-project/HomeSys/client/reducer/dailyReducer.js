@@ -4,7 +4,11 @@ export default function reducer(state = {}, action={}) {
             let a = Object.assign({}, state, {
                 daily_list: action.daily_list
             });
-            return a
+            return a;
+        case "DAILY_ITEM_TYPE":
+            return Object.assign({}, state, {
+                selectedCategory: action.selectedCategory
+            });
         default:
             return state;
     }

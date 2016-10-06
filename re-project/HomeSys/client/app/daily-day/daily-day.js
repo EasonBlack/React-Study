@@ -1,25 +1,38 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import dailyActions from '../../actions/dailyList';
+import dailyActions from '../../actions/dailyAction';
 import globalActions from '../../actions/globalAction';
 import DailyShow from './daily-show/daily-show';
 import DailyForm from './daily-form/daily-form';
+import DailySimple from './daily-simple/daily-simple'
+import DailyRich from './daily-rich/daily-rich'
 
 class DailyDay extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state = {
+            selectedType: 'simple'
+        }
         this.props.fetchByDate(this.props.params.date);
         this.props.fetchItemType();
     }
 
     render() {
-        console.log(this.props.daily.daily_list);
+        let itemSection = null;
+        if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'simple') {
+            console.log(this.props.daily.selectedCategory.name);
+            itemSection = <DailySimple type={this.props.daily.selectedCategory.name} />;
+        } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'rich') {
+            itemSection = <DailyRich  type={this.props.daily.selectedCategory.name}/>;
+        }
+
         return <div>
             <div className="flex__row">
                 <DailyShow list={this.props.daily.daily_list}></DailyShow>
-                <DailyForm date={this.props.params.date}></DailyForm>
+                <DailyForm date={this.props.params.date} selectedtype={this.state.selectedType}></DailyForm>
+                {itemSection}
             </div>
         </div>;
     }

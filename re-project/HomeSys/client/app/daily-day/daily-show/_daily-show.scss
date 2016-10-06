@@ -2,17 +2,17 @@
 .daily__list {
    padding-top:40px;
    list-style:none;
+   li {
+      padding-left:10px;
+      margin-bottom:10px;
+   }
 }
 
 .daily__item_index {
    width:20px;
    display: inline-block;
 }
-.daily__item_name {
-   width:80px;
-   display: inline-block;
-}
-.daily__item_hour {
+.daily__item_col {
    width:80px;
    display: inline-block;
 }

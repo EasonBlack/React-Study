@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import dailyActions from '../../../actions/dailyList';
+import dailyActions from '../../../actions/dailyAction';
 import globalActions from '../../../actions/globalAction';
 class DailyForm extends React.Component {
     constructor(props, context) {
@@ -14,11 +14,18 @@ class DailyForm extends React.Component {
             typeItems: this.props.type.item_type.data.filter((o)=> o.type == 'item')
         };
         this.inputChange = this.inputChange.bind(this);
+        this.selectChange = this.selectChange.bind(this);
         this.getValues = this.getValues.bind(this);
+        this.props.selectItemType(this.state.typeItems[0]);
     }
 
     inputChange(e) {
         this.setState({[e.target.name]: e.target.value});
+    }
+
+    selectChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+        this.props.selectItemType(this.props.type.item_type.data.find((o)=> o.id == e.target.value));
     }
 
     getValues(e) {
@@ -37,7 +44,7 @@ class DailyForm extends React.Component {
                 <span className="input__label">Type</span>
                 <select
                     name="type"
-                    onChange={this.inputChange}
+                    onChange={this.selectChange}
                     value={this.state.type}>
                     {this.state.typeItems.map((o, i) => {
                         return <option key={i} value={o.id}>{o.name}</option>;
@@ -65,6 +72,7 @@ class DailyForm extends React.Component {
 
 var mapStateToProps = function (state) {
     return {
+        daily: state.daily,
         type: state.item_type
     }
 };

@@ -11,7 +11,8 @@ import Daily from './app/daily/daily.js';
 import DailyDay from './app/daily-day/daily-day.js';
 
 
-let initialState = {}
+let initialState = {
+}
 
 let store = configureStore(initialState);
 

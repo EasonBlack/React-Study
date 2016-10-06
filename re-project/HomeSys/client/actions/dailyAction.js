@@ -44,6 +44,13 @@ let dailyList = {
             type: 'DAILY_LIST_SHOW',
             daily_list: p
         }
+    },
+
+    selectItemType: function(type) {
+        return {
+            type: 'DAILY_ITEM_TYPE',
+            selectedCategory: type
+        }
     }
 
 }
