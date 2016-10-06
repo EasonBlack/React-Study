@@ -1,0 +1,13 @@
+.daily__topbar {
+  height: 40px;
+  width: 100%;
+  background-color: #01ff70;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.daily__content {
+  height: calc(100vh - 40px);
+  padding-top: 10px;
+}

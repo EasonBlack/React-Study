@@ -1,0 +1,24 @@
+
+.flex__row {
+  display: flex;
+  flex-direction: row;
+}
+
+$flex_number: 1,2,3;
+@each $number in $flex_number {
+  .flex__#{$number} {
+    flex: $number;
+  }
+}
+
+$flex_width: 300,400,500;
+@each $width in $flex_width {
+  .flex__#{$width} {
+    width: #{$width}px;
+  }
+}
+
+.margin__center {
+  margin-left:auto;
+  margin-right:auto;
+}
