@@ -4,7 +4,6 @@ export default function reducer(state = {}, action={}) {
             let a = Object.assign({}, state, {
                 daily_list: action.daily_list
             });
-            console.log(a);
             return a
         default:
             return state;

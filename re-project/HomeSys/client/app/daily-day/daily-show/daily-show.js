@@ -1,6 +1,10 @@
 import React from 'react'
 
 class DailyShow extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        console.log(props);
+    }
 
     render() {
         return  <ul className="flex__400 daily__list" >

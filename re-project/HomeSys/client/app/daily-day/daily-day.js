@@ -15,11 +15,11 @@ class DailyDay extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.daily.daily_list);
         return <div>
             <div className="flex__row">
                 <DailyShow list={this.props.daily.daily_list}></DailyShow>
-                <DailyForm></DailyForm>
+                <DailyForm date={this.props.params.date}></DailyForm>
             </div>
         </div>;
     }

@@ -13,6 +13,20 @@ let dailyList = {
         }
     },
 
+    insetDaily: function(object) {
+        return (dispatch) => {
+           $.ajax({
+               type: "POST",
+               url: "/daily",
+               data: object,
+               success: (res)=>{
+                   //dailyList.fetchByDate(object.date);
+                   dispatch(dailyList.showList(res));
+               }
+           })
+        }
+    },
+
     fetchByDate: function (date) {
         return (dispatch) => {
             $.ajax({

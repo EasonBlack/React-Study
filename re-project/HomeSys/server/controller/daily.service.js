@@ -33,8 +33,17 @@ module.exports = function(client) {
                 text: 'INSERT INTO daily(date,hour,type,content,trophy) values($1, $2, $3, $4, $5)',
                 values: [req.body.date, req.body.hour, req.body.type, req.body.content, req.body.trophy]
             }, function (error, results) {
-                if (error) console.log(error);
-                res.send("success");
+                client.query({
+                    text: 'select * from daily where date=$1',
+                    values: [req.body.date]
+                }, function (error, results) {
+                    if (error) {
+                        console.log(error);
+                    }
+                    res.send({
+                        data: results.rows
+                    });
+                });
             });
         },
 

@@ -1,6 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router'
-
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import dailyActions from '../../../actions/dailyList';
+import globalActions from '../../../actions/globalAction';
 class DailyForm extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -8,43 +10,67 @@ class DailyForm extends React.Component {
             type: null,
             hour: 0,
             trophy: 0,
-            content: null
+            content: null,
+            typeItems: this.props.type.item_type.data.filter((o)=> o.type == 'item')
         };
         this.inputChange = this.inputChange.bind(this);
         this.getValues = this.getValues.bind(this);
     }
 
-    inputChange( e) {
+    inputChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
 
     getValues(e) {
-        console.log(this.state);
+        this.props.insetDaily({
+            date: this.props.date,
+            type: this.state.type,
+            hour: this.state.hour,
+            trophy: this.state.trophy,
+            content: this.state.content,
+        })
     }
 
     render() {
         return <div className="flex__1 daily__form">
             <div className="input__row">
                 <span className="input__label">Type</span>
-                <select/>
+                <select
+                    name="type"
+                    onChange={this.inputChange}
+                    value={this.state.type}>
+                    {this.state.typeItems.map((o, i) => {
+                        return <option key={i} value={o.id}>{o.name}</option>;
+                    })}
+                </select>
             </div>
             <div className="input__row">
                 <span className="input__label">Hour</span>
-                <input  value = {this.state.hour} onChange={this.inputChange} name="hour" />
+                <input value={this.state.hour} onChange={this.inputChange} name="hour"/>
             </div>
             <div className="input__row">
                 <span className="input__label">Trophy</span>
-                <input   value = {this.state.trophy}  onChange={this.inputChange} name="trophy"  />
+                <input value={this.state.trophy} onChange={this.inputChange} name="trophy"/>
             </div>
             <div className="input__row">
                 <span className="input__label">Content</span>
                 <input />
             </div>
             <div className="input__row">
-               <a className="app__button_default" onClick={this.getValues}>Add</a>
+                <a className="app__button_default" onClick={this.getValues}>Add</a>
             </div>
         </div>;
     }
 }
 
-export default DailyForm;
+var mapStateToProps = function (state) {
+    return {
+        type: state.item_type
+    }
+};
+
+var mapDispatchToProps = function (dispatch) {
+    return bindActionCreators(dailyActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DailyForm)
