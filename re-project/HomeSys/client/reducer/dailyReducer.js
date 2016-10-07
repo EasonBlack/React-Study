@@ -9,6 +9,22 @@ export default function reducer(state = {}, action={}) {
             return Object.assign({}, state, {
                 selectedCategory: action.selectedCategory
             });
+        case "RICH_ITEM_LIST":
+            return Object.assign({}, state, {
+                rich_item_list: action.rich_item_list
+            });
+        case "SELECT_RICH_ITEM":
+            return Object.assign({}, state, {
+                selectedRichItem: action.selectedRichItem
+            });
+        case "SET_RICH_ITEM":
+            return Object.assign({}, state, {
+                rich_item: action.rich_item
+            });
+        case "SET_SERIES_ITEM":
+            return Object.assign({}, state, {
+                series_item: action.series_item
+            });
         default:
             return state;
     }

@@ -13,6 +13,7 @@ class DailyShow extends React.Component {
                    <span className="daily__item_col">TYPE</span>
                    <span className="daily__item_col">HOUR</span>
                    <span className="daily__item_col">TROPHY</span>
+                   <span className="daily__item_col">CONTENT</span>
                </li>
             {
                 this.props.list && this.props.list.data.map(function (p, key) {
@@ -21,6 +22,7 @@ class DailyShow extends React.Component {
                         <span className="daily__item_col">{_typeName}</span>
                         <span className="daily__item_col">{p.hour}</span>
                         <span className="daily__item_col">{p.trophy}</span>
+                        <span className="daily__item_col">{p.name}</span>
                     </li>
                 }.bind(this))
             }

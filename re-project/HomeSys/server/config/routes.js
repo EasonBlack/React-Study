@@ -18,17 +18,15 @@ module.exports = function (app) {
     app.get('/daily', appCtrl.dailyService.DailyAll);
     app.get('/daily/:date', appCtrl.dailyService.DailyGetByDate);
     app.post('/daily', appCtrl.dailyService.DailyInsert)
+    app.post('/dailyrich', appCtrl.dailyService.DailyRichInsert)
+    app.post('/dailyseries', appCtrl.dailyService.DailySeriesInsert)
     app.delete('/daily/:id', appCtrl.dailyService.DailyDelete)
     app.put('/daily/:id', appCtrl.dailyService.DailyUpdate)
 
     app.get('/itemtype', appCtrl.itemTypeService.ItemTypeAll)
 
-    app.get('/simpleitem', appCtrl.simpleItemService.SimpleItemAll);
-    app.post('/simpleitem', appCtrl.simpleItemService.SimpleItemInsert)
-    app.delete('/simpleitem/:id', appCtrl.simpleItemService.SimpleItemDelete)
-    app.put('/simpleitem/:id', appCtrl.simpleItemService.SimpleItemUpdate)
-
     app.get('/richitem', appCtrl.richItemService.RichItemAll);
+    app.get('/richitem/:type', appCtrl.richItemService.RichItemByType);
     app.post('/richitem', appCtrl.richItemService.RichItemInsert)
     app.delete('/richitem/:id', appCtrl.richItemService.RichItemDelete)
     app.put('/richitem/:id', appCtrl.richItemService.RichItemUpdate)

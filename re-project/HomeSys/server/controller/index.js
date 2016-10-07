@@ -15,14 +15,12 @@ const pgConfig = {
 const client = new pg.Pool(pgConfig);
 client.connect();
 const dailyService = require('./daily.service')(client);
-const simpleItemService = require('./simple_item.service')(client);
 const richItemService = require('./rich_item.service')(client);
 const itemTypeService = require('./item_type.service')(client);
 
 module.exports = {
     pageService,
     dailyService,
-    simpleItemService,
     richItemService,
     itemTypeService
 }

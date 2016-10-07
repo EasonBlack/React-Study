@@ -13,13 +13,36 @@ module.exports = function (client) {
             });
         },
 
+        RichItemByType: function (req, res) {
+            client.query({
+                text: 'select * from rich_item where type=$1',
+                values: [req.params.type]
+            }, function (error, results) {
+                if (error) {
+                    console.log(error);
+                }
+                res.send({
+                    data: results.rows
+                });
+            });
+        },
+
         RichItemInsert: function (req, res) {
             client.query({
                 text: 'INSERT INTO rich_item(type,name,author,comment) values($1, $2, $3, $4)',
                 values: [req.body.type, req.body.name, req.body.author, req.body.comment]
             }, function (error, results) {
-                if (error) console.log(error);
-                res.send("success");
+                client.query({
+                    text: 'select * from rich_item where type=$1',
+                    values: [req.body.type]
+                }, function (error, results) {
+                    if (error) {
+                        console.log(error);
+                    }
+                    res.send({
+                        data: results.rows
+                    });
+                });
             });
         },
 

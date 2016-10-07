@@ -26,16 +26,41 @@ class DailyForm extends React.Component {
     selectChange(e) {
         this.setState({[e.target.name]: e.target.value});
         this.props.selectItemType(this.props.type.item_type.data.find((o)=> o.id == e.target.value));
+        this.props.fetchRichItem({type: e.target.value});
     }
 
     getValues(e) {
-        this.props.insetDaily({
-            date: this.props.date,
-            type: this.state.type,
-            hour: this.state.hour,
-            trophy: this.state.trophy,
-            content: this.state.content,
-        })
+
+        if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'simple') {
+            let _content = this.props.daily.selectedRichItem;
+            this.props.insetDaily({
+                date: this.props.date,
+                type: this.state.type,
+                hour: this.state.hour,
+                trophy: this.state.trophy,
+                content: _content
+            })
+        } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'rich') {
+            this.props.insetRichDaily({
+                date: this.props.date,
+                type: this.state.type,
+                hour: this.state.hour,
+                trophy: this.state.trophy,
+                item_name: this.props.daily.rich_item.item_name,
+                item_author: this.props.daily.rich_item.item_author,
+                item_comment: this.props.daily.rich_item.item_comment
+            })
+        } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'series') {
+            this.props.insertSeriesDaily({
+                date: this.props.date,
+                type: this.state.type,
+                hour: this.state.hour,
+                trophy: this.state.trophy,
+                item_id: this.props.daily.series_item.item_id,
+                item_episode: this.props.daily.series_item.item_episode,
+            })
+        }
+
     }
 
     render() {
@@ -46,6 +71,7 @@ class DailyForm extends React.Component {
                     name="type"
                     onChange={this.selectChange}
                     value={this.state.type}>
+                    <option></option>
                     {this.state.typeItems.map((o, i) => {
                         return <option key={i} value={o.id}>{o.name}</option>;
                     })}
@@ -58,10 +84,6 @@ class DailyForm extends React.Component {
             <div className="input__row">
                 <span className="input__label">Trophy</span>
                 <input value={this.state.trophy} onChange={this.inputChange} name="trophy"/>
-            </div>
-            <div className="input__row">
-                <span className="input__label">Content</span>
-                <input />
             </div>
             <div className="input__row">
                 <a className="app__button_default" onClick={this.getValues}>Add</a>
