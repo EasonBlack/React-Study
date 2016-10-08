@@ -25,6 +25,10 @@ export default function reducer(state = {}, action={}) {
             return Object.assign({}, state, {
                 series_item: action.series_item
             });
+        case "DAILY_MONTH_SHOW":
+            return Object.assign({}, state, {
+                month_list: action.month_list
+            });
         default:
             return state;
     }

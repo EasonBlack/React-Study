@@ -1,6 +1,10 @@
 import React from 'react';
 import {hashHistory} from 'react-router'
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import dailyActions from '../../actions/dailyAction';
+
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 BigCalendar.momentLocalizer(moment);
@@ -8,7 +12,10 @@ BigCalendar.momentLocalizer(moment);
 class Daily extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.props.fetchMonth({ year: new Date().getFullYear(), month: new Date().getMonth()+1});
     }
+    
+
 
     render() {
         return <section>
@@ -19,7 +26,7 @@ class Daily extends React.Component {
             <div className="daily__content">
                 <BigCalendar
                     selectable
-                    events={[]}
+                    events={this.props.daily.month_list || []}
                     onSelectSlot={(slotInfo) => {
                     console.log(slotInfo);
                             let _date = moment(slotInfo.start).format('YYYY-MM-DD');
@@ -32,4 +39,14 @@ class Daily extends React.Component {
     }
 }
 
-export default Daily;
+var mapStateToProps = function (state) {
+    return {
+        daily: state.daily
+    }
+};
+
+var mapDispatchToProps = function (dispatch) {
+    return bindActionCreators(dailyActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Daily)

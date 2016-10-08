@@ -13,6 +13,20 @@ module.exports = function (client) {
             });
         },
 
+        DailyGetByMonth: function(req, res){
+            var _month = req.params.month > 9 ? req.params.month : '0'+req.params.month;
+            var year_month = `${req.params.year}-${_month}`;
+            client.query({
+                text: 'select * from "DAILY_ITEM" where left(date, 7)=$1',
+                values: [year_month]
+            }, function (error, results) {
+                if (error) {
+                    console.log(error);
+                }
+                res.send(results.rows);
+            });
+        },
+
         DailyGetByDate: function (req, res) {
             client.query({
                 text: 'select * from "DAILY_ITEM" where date=$1',

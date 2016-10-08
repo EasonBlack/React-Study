@@ -13,40 +13,52 @@ let dailyList = {
         }
     },
 
-    insetDaily: function(object) {
+    fetchMonth: function (object) {
         return (dispatch) => {
-           $.ajax({
-               type: "POST",
-               url: "/daily",
-               data: object,
-               success: (res)=>{
-                   //dailyList.fetchByDate(object.date);
-                   dispatch(dailyList.showList(res));
-               }
-           })
+            $.ajax({
+                type: "GET",
+                url: `/dailymonth/${object.year}/${object.month}`,
+                success: function (res) {
+                    dispatch(dailyList.showMonthEvent(res));
+                }
+            })
         }
     },
 
-    insetRichDaily: function(object) {
+    insetDaily: function (object) {
         return (dispatch) => {
             $.ajax({
                 type: "POST",
-                url: "/dailyrich",
+                url: "/daily",
                 data: object,
-                success: (res)=>{
+                success: (res)=> {
+                    //dailyList.fetchByDate(object.date);
                     dispatch(dailyList.showList(res));
                 }
             })
         }
     },
 
-    insertSeriesDaily: function(object) {
+    insetRichDaily: function (object) {
+        return (dispatch) => {
+            $.ajax({
+                type: "POST",
+                url: "/dailyrich",
+                data: object,
+                success: (res)=> {
+                    dispatch(dailyList.showList(res));
+                }
+            })
+        }
+    },
+
+    insertSeriesDaily: function (object) {
         return (dispatch) => {
             $.ajax({
                 type: "POST",
                 url: "/dailyseries",
                 data: object,
-                success: (res)=>{
+                success: (res)=> {
                     dispatch(dailyList.showList(res));
                 }
             })
@@ -72,41 +84,57 @@ let dailyList = {
         }
     },
 
-    selectItemType: function(type) {
+    showMonthEvent: function (p) {
+        let _events = p.map(o => {
+            var [_y,_m,_d] = o.date.split('-');
+            _m = parseInt(_m) - 1;
+            return {
+                'title': o.name,
+                'start': new Date(_y, _m, _d, 0, 0, 0),
+                'end': new Date(_y, _m, _d, 0, 0, 0)
+            }
+        });
+        return {
+            type: 'DAILY_MONTH_SHOW',
+            month_list: _events
+        }
+    },
+
+    selectItemType: function (type) {
         return {
             type: 'DAILY_ITEM_TYPE',
             selectedCategory: type
         }
     },
 
-    setRichItem: function(rich) {
+    setRichItem: function (rich) {
         return {
             type: 'SET_RICH_ITEM',
             rich_item: rich
         }
     },
 
-    setSeriesItem : function(series) {
+    setSeriesItem: function (series) {
         return {
             type: 'SET_SERIES_ITEM',
             series_item: series
         }
     },
 
-    insertRichItem: function(object) {
+    insertRichItem: function (object) {
         return (dispatch) => {
             $.ajax({
                 type: "POST",
                 url: "/richitem",
                 data: object,
-                success: (res)=>{
+                success: (res)=> {
                     dispatch(dailyList.showRichItem(res));
                 }
             })
         }
     },
 
-    fetchRichItem: function(object) {
+    fetchRichItem: function (object) {
         return (dispatch) => {
             $.ajax({
                 type: "GET",
@@ -119,14 +147,14 @@ let dailyList = {
         }
     },
 
-    showRichItem : function(p) {
+    showRichItem: function (p) {
         return {
             type: 'RICH_ITEM_LIST',
             rich_item_list: p
         }
     },
 
-    selectRichItem: function(id) {
+    selectRichItem: function (id) {
         return {
             type: 'SELECT_RICH_ITEM',
             selectedRichItem: id

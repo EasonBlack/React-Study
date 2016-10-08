@@ -127,4 +127,9 @@ img {
 .daily__form {
   padding-top: 40px; }
 
+.rbc-date-cell.rbc-now {
+  font-weight: bold;
+  background-color: #777;
+  color: white; }
+
 /*# sourceMappingURL=main.css.map */

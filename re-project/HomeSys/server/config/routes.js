@@ -17,6 +17,7 @@ module.exports = function (app) {
     app.get('/', appCtrl.pageService.renderIndex);
     app.get('/daily', appCtrl.dailyService.DailyAll);
     app.get('/daily/:date', appCtrl.dailyService.DailyGetByDate);
+    app.get('/dailymonth/:year/:month', appCtrl.dailyService.DailyGetByMonth)
     app.post('/daily', appCtrl.dailyService.DailyInsert)
     app.post('/dailyrich', appCtrl.dailyService.DailyRichInsert)
     app.post('/dailyseries', appCtrl.dailyService.DailySeriesInsert)
