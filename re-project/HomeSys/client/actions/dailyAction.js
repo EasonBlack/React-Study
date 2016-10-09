@@ -86,12 +86,14 @@ let dailyList = {
 
     showMonthEvent: function (p) {
         let _events = p.map(o => {
-            var [_y,_m,_d] = o.date.split('-');
+            let [_y,_m,_d] = o.date.split('-');
             _m = parseInt(_m) - 1;
+            let _d_end = parseInt(_d) + 1;
+            //let [_y_end,_m_end, _d_end] = end_date.date.split('-');
             return {
                 'title': o.name,
-                'start': new Date(_y, _m, _d, 0, 0, 0),
-                'end': new Date(_y, _m, _d, 0, 0, 0)
+                'start': new Date(_y, _m, _d),
+                'end': new Date(_y, _m, _d)
             }
         });
         return {

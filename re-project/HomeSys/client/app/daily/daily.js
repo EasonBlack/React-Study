@@ -12,9 +12,11 @@ BigCalendar.momentLocalizer(moment);
 class Daily extends React.Component {
     constructor(props, context) {
         super(props, context);
+    }
+
+    componentWillMount() {
         this.props.fetchMonth({ year: new Date().getFullYear(), month: new Date().getMonth()+1});
     }
-    
 
 
     render() {
@@ -32,7 +34,7 @@ class Daily extends React.Component {
                             let _date = moment(slotInfo.start).format('YYYY-MM-DD');
                             hashHistory.push(`/daily/${_date}`);
                     }}
-                    views={['month']}
+                    views={['month', 'week']}
                 />
             </div>
         </section>;
