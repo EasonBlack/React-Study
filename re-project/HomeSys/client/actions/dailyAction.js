@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import moment from 'moment';
 
 let dailyList = {
     fetch: function (object) {
@@ -19,7 +20,19 @@ let dailyList = {
                 type: "GET",
                 url: `/dailymonth/${object.year}/${object.month}`,
                 success: function (res) {
-                    dispatch(dailyList.showMonthEvent(res));
+                    let _events = res.map(o => {
+                        let _end_date = moment(o.date).add(1,'days').format('YYYY-MM-DD');
+                        let [_y,_m,_d] = o.date.split('-');
+                        let [_y_end,_m_end,_d_end] = _end_date.split('-');
+                        _m = parseInt(_m) - 1;
+                        //let _d_end = parseInt(_d) + 1;
+                        return {
+                            'title': o.name,
+                            'start': new Date(_y, _m, _d),
+                            'end': new Date(_y, _m, _d_end)
+                        }
+                    });
+                    dispatch(dailyList.showMonthEvent(_events));
                 }
             })
         }
@@ -85,20 +98,9 @@ let dailyList = {
     },
 
     showMonthEvent: function (p) {
-        let _events = p.map(o => {
-            let [_y,_m,_d] = o.date.split('-');
-            _m = parseInt(_m) - 1;
-            let _d_end = parseInt(_d) + 1;
-            //let [_y_end,_m_end, _d_end] = end_date.date.split('-');
-            return {
-                'title': o.name,
-                'start': new Date(_y, _m, _d),
-                'end': new Date(_y, _m, _d)
-            }
-        });
         return {
             type: 'DAILY_MONTH_SHOW',
-            month_list: _events
+            month_list: p
         }
     },
 
