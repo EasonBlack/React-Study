@@ -57,8 +57,9 @@ class DailySeries extends React.Component {
                     return <option key={i} value={o.id}>{o.name}</option>;
                 })}
             </select>
-            <div className="input__row">
-                <input className="input___size_medium" value={this.state.item_episode} onChange={this.inputChange} name="item_episode"/>
+            <div className="input__row daily__series_episode">
+                <input className="input___size_small" value={this.state.item_episode}
+                       onChange={this.inputChange} name="item_episode"/>
             </div>
         </div>;
     }

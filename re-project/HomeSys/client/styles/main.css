@@ -42,6 +42,12 @@ img {
 .flex__500 {
   width: 500px; }
 
+.flex__600 {
+  width: 600px; }
+
+.flex__700 {
+  width: 700px; }
+
 .margin__center {
   margin-left: auto;
   margin-right: auto; }
@@ -68,8 +74,45 @@ img {
   line-height: 20px;
   padding-left: 10px; }
 
+.input__label_small {
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px; }
+
+.input__label_medium {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px; }
+
+.input__label_large {
+  display: inline-block;
+  width: 120px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px; }
+
+.input__select {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.input___size_small {
+  width: 80px;
+  height: 30px;
+  line-height: 30px; }
+
 .input___size_medium {
-  width: 150px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px; }
+
+.input___size_large {
+  width: 120px;
   height: 30px;
   line-height: 30px; }
 
@@ -126,6 +169,12 @@ img {
 
 .daily__form {
   padding-top: 40px; }
+
+.daily__series_episode {
+  margin-left: 22px;
+  margin-top: 10px; }
+  .daily__series_episode input {
+    padding-left: 10px; }
 
 .rbc-date-cell.rbc-now {
   font-weight: bold;

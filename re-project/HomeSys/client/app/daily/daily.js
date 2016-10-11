@@ -1,6 +1,6 @@
 import React from 'react';
 import {hashHistory} from 'react-router'
-
+import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import dailyActions from '../../actions/dailyAction';
@@ -15,24 +15,25 @@ class Daily extends React.Component {
     }
 
     componentWillMount() {
-        this.props.fetchMonth({ year: new Date().getFullYear(), month: new Date().getMonth()+1});
+        this.props.fetchMonth({year: new Date().getFullYear(), month: new Date().getMonth() + 1});
     }
 
 
     render() {
         return <section>
             <div className="daily__topbar">
-                <a className="app__button_default">Canlendar</a>
-                <a className="app__button_default">List</a>
+                <Link className="app__button_default" to={'/daily/daily-calendar'}>Canlendar</Link>
+                <Link className="app__button_default" to={'/daily/daily-list'}>List</Link>
             </div>
             <div className="daily__content">
+                {this.props.children}
                 <BigCalendar
                     selectable
                     events={this.props.daily.month_list || []}
                     onSelectSlot={(slotInfo) => {
-                    console.log(slotInfo);
-                            let _date = moment(slotInfo.start).format('YYYY-MM-DD');
-                            hashHistory.push(`/daily/${_date}`);
+                        console.log(slotInfo);
+                        let _date = moment(slotInfo.start).format('YYYY-MM-DD');
+                        hashHistory.push(`/daily/${_date}`);
                     }}
                     views={['month', 'week']}
                 />
@@ -52,3 +53,4 @@ var mapDispatchToProps = function (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Daily)
+

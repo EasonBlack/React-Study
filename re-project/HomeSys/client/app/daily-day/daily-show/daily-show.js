@@ -8,7 +8,7 @@ class DailyShow extends React.Component {
     }
 
     render() {
-        return  <ul className="flex__400 daily__list" >
+        return  <ul className="flex__500 daily__list" >
                <li>
                    <span className="daily__item_col">TYPE</span>
                    <span className="daily__item_col">HOUR</span>

@@ -11,7 +11,7 @@ $flex_number: 1,2,3;
   }
 }
 
-$flex_width: 300,400,500;
+$flex_width: 300,400,500,600,700;
 @each $width in $flex_width {
   .flex__#{$width} {
     width: #{$width}px;

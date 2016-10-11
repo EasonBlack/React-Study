@@ -27,17 +27,17 @@ class DailyRich extends React.Component {
     render() {
         return <div className="flex__1 daily__section">
             <div className="input__row">
-                <span className="input__label">NAME</span>
-                <input value={this.state.item_name} onChange={this.inputChange} name="item_name"/>
+                <span  className="input__label_medium">Name</span>
+                <input className="input___size_medium" value={this.state.item_name} onChange={this.inputChange} name="item_name"/>
             </div>
             <div className="input__row">
-                <span className="input__label">AUTHOR</span>
-                <input value={this.state.item_author} onChange={this.inputChange} name="item_author"/>
+                <span className="input__label_medium">Author</span>
+                <input className="input___size_medium" value={this.state.item_author} onChange={this.inputChange} name="item_author"/>
             </div>
             <div className="input__row">
-                <span className="input__label">COMMENT</span>
-                <select value={this.state.item_comment}  onChange={this.inputChange} name="item_comment">
-                    <option value="5">5</option>
+                <span className="input__label_medium">Comment</span>
+                <select className="input__select" value={this.state.item_comment}  onChange={this.inputChange} name="item_comment">
+                    <option value="5">5</option>  
                     <option value="4">4</option>
                     <option value="3">3</option>
                     <option value="2">2</option>

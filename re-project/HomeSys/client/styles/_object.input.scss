@@ -1,19 +1,42 @@
 
 .input__row {
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 .input__label {
-  display:inline-block;
-  width:80px;
-  height:20px;
-  line-height:20px;
-  padding-left:10px;
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
 }
 
-.input___size_medium {
-  width: 150px;
+$input__label_width: (small, 80), (medium, 100), (large, 120);
+@each $name, $width in $input__label_width {
+  .input__label_#{$name} {
+    display: inline-block;
+    width: #{$width}px;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 10px;
+  }
+}
+
+.input__select {
   height: 30px;
   line-height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+
+$input__size_width: (small, 100), (medium, 120), (large, 150);
+@each $name, $width in $input__label_width {
+  .input___size_#{$name} {
+    width: #{$width}px;
+    height: 30px;
+    line-height: 30px;
+  }
+}
+
 

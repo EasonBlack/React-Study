@@ -67,7 +67,7 @@ class DailyForm extends React.Component {
         return <div className="flex__1 daily__form">
             <div className="input__row">
                 <span className="input__label">Type</span>
-                <select
+                <select className="input__select"
                     name="type"
                     onChange={this.selectChange}
                     value={this.state.type}>
@@ -79,11 +79,11 @@ class DailyForm extends React.Component {
             </div>
             <div className="input__row">
                 <span className="input__label">Hour</span>
-                <input value={this.state.hour} onChange={this.inputChange} name="hour"/>
+                <input className="input___size_medium" value={this.state.hour} onChange={this.inputChange} name="hour"/>
             </div>
             <div className="input__row">
                 <span className="input__label">Trophy</span>
-                <input value={this.state.trophy} onChange={this.inputChange} name="trophy"/>
+                <input className="input___size_medium" value={this.state.trophy} onChange={this.inputChange} name="trophy"/>
             </div>
             <div className="input__row">
                 <a className="app__button_default" onClick={this.getValues}>Add</a>
