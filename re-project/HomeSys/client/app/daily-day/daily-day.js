@@ -8,6 +8,7 @@ import DailyForm from './daily-form/daily-form';
 import DailySimple from './daily-simple/daily-simple'
 import DailyRich from './daily-rich/daily-rich'
 import DailySeries from './daily-series/daily-series'
+import DailyBook from './daily-book/daily-book'
 
 class DailyDay extends React.Component {
 
@@ -23,6 +24,8 @@ class DailyDay extends React.Component {
             itemSection = <DailySimple type={this.props.daily.selectedCategory.id} />;
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'rich') {
             itemSection = <DailyRich  type={this.props.daily.selectedCategory.id} />;
+        } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'book') {
+            itemSection = <DailyBook  type={this.props.daily.selectedCategory.id} />;
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'series') {
             itemSection = <DailySeries  type={this.props.daily.selectedCategory.id} />;
         }
