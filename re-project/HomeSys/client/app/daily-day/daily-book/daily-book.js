@@ -7,7 +7,7 @@ class DailyBook extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.inputChange = this.inputChange.bind(this);
-        this.addSeriesItem = this.addSeriesItem.bind(this);
+        this.addBookItem = this.addBookItem.bind(this);
         this.selectChange = this.selectChange.bind(this);
         this.state = {
             newBookName: '',
@@ -48,12 +48,14 @@ class DailyBook extends React.Component {
         return  <div className="flex__1 daily__section">
             <div className="daily__new-content">
                 <div>
-                    <input className="input___size_medium" onChange={this.inputChange} name="newBookName" value={this.state.newBookName}/>
+                    <div>Name:</div>
+                    <input className="input___size_large" onChange={this.inputChange} name="newBookName" value={this.state.newBookName}/>
                 </div>
                 <div>
-                    <input className="input___size_medium" onChange={this.inputChange} name="newBookAuthor" value={this.state.newBookAuthor}/>
+                    <div>Author:</div>
+                    <input className="input___size_large" onChange={this.inputChange} name="newBookAuthor" value={this.state.newBookAuthor}/>
                 </div>
-                <div>
+                <div className="button__container_addbook">
                     <a className="app__button_default" onClick={this.addBookItem}>NEW</a>
                 </div>
 
@@ -67,10 +69,6 @@ class DailyBook extends React.Component {
                     return <option key={i} value={o.id}>{o.name}</option>;
                 })}
             </select>
-            <div className="input__row daily__series_episode">
-                <input className="input___size_small" value={this.state.item_time}
-                       onChange={this.inputChange} name="item_time"/>
-            </div>
         </div>;
     }
 }

@@ -30,7 +30,6 @@ class DailyForm extends React.Component {
     }
 
     getValues(e) {
-
         if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'simple') {
             let _content = this.props.daily.selectedRichItem;
             this.props.insetDaily({
@@ -58,6 +57,15 @@ class DailyForm extends React.Component {
                 trophy: this.state.trophy,
                 item_id: this.props.daily.series_item.item_id,
                 item_episode: this.props.daily.series_item.item_episode,
+            })
+        } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'book') {
+            this.props.insertSeriesDaily({
+                date: this.props.date,
+                type: this.state.type,
+                hour: this.state.hour,
+                trophy: this.state.trophy,
+                item_id: this.props.daily.series_item.item_id,
+                item_episode: this.state.hour
             })
         }
 

@@ -55,6 +55,9 @@ img {
 .text__balance {
   color: #EBEDEC; }
 
+.button__container_addbook {
+  padding-top: 10px; }
+
 .app__button_default {
   padding: 0px 10px;
   margin: 0px 5px;
