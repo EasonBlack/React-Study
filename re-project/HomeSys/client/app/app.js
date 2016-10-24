@@ -8,6 +8,7 @@ class App extends React.Component {
             <div className="flex__300 app__leftmenu">
                 <ul >
                     <li><Link to={'/daily'}>Daily</Link></li>
+                    <li><Link to={'/book'}>Book</Link></li>
                 </ul>
             </div>
             <div className="flex__1 app__rightcontent">
