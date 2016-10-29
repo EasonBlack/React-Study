@@ -18,7 +18,8 @@ class Book extends React.Component {
         return <div>
             <div className="page__title"></div>
             <AppTable
-                headers="id,name,author,state"
+                headers="id,name,author,state,action"
+                finishAction={this.props.setStatus.bind(this, 10)}
                 rows={this.props.book.booklist?this.props.book.booklist.data:[]}>
             </AppTable>
         </div>;
