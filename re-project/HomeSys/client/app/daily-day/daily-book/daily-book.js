@@ -66,6 +66,7 @@ class DailyBook extends React.Component {
                 className="daily__simple-select">
                 <option></option>
                 {this.props.daily.rich_item_list && this.props.daily.rich_item_list.data.map((o, i) => {
+                    if(o.state==10 || o.state==11) return ;  //finish
                     return <option key={i} value={o.id}>{o.name}</option>;
                 })}
             </select>

@@ -1,30 +1,35 @@
 import $ from 'jquery';
 import moment from 'moment';
 
-let bookActions= {
-    fetchAllBook: function (object) {
-        return (dispatch) => {
-            $.ajax({
-                type: "GET",
-                url: "/richitem/2",
-                success: function (res) {
-                    dispatch(bookActions.showAllBook(res));
-                }
-            })
-        }
-    },
+function setFinish(row) {
+    return (dispatch) => {
+        $.ajax({
+            type: "POST",
+            url: `/richitem/setstate/${row.id}/10`,
+            success: function (res)  {
+                fetchAllBook()(dispatch);
+                //dispatch(bookActions.showAllBook(res));
+            }
+        })
+    }
+}
 
-    setStatus: function (status) {
-        return (dispatch) => {
-            $.ajax({
-                type: "POST",
-                url: `/richitem/setfinish/${status}`,   //10 finish
-                success: function (res) {
-                    dispatch(bookActions.showAllBook(res));
-                }
-            })
-        }
-    },
+function fetchAllBook(object) {
+    return (dispatch) => {
+        $.ajax({
+            type: "GET",
+            url: "/richitem/2",
+            success: function (res) {
+                dispatch(bookActions.showAllBook(res));
+            }
+        })
+    }
+}
+
+let bookActions= {
+    fetchAllBook: fetchAllBook,
+
+    setFinish: setFinish,
 
     showAllBook: function(p) {
         return {

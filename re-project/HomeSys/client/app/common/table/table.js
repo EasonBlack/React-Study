@@ -1,4 +1,5 @@
 import React from 'react'
+import AppRow from './row.js';
 
 class AppTable extends React.Component {
     constructor(props, context) {
@@ -12,6 +13,7 @@ class AppTable extends React.Component {
     render() {
         let headers = this.props.headers.split(',');
         let rows = this.props.rows;
+        let _props = this.props;
         return <div>
             <table className="table table-striped">
                 <thead>
@@ -26,13 +28,8 @@ class AppTable extends React.Component {
                 <tbody>
                 {
                     rows.map(function (r) {
-                        return <tr>
-                            {
-                                headers.map(function (h) {
-                                     return <td>{r[h]}</td>
-                                })
-                            }
-                        </tr>
+                       return <AppRow _props={_props} headers={headers} row={r}>
+                       </AppRow>
                     })
                 }
                 </tbody>

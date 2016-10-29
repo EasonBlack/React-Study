@@ -1,5 +1,8 @@
 module.exports = function (client) {
     return {
+        
+        
+        
         RichItemAll: function (req, res) {
             client.query({
                 text: 'select * from rich_item'
@@ -60,7 +63,17 @@ module.exports = function (client) {
         RichItemUpdate: function (req, res) {
             client.query({
                 text: 'UPDATE rich_item SET type=$1, name=$2, author=$3, comment=$4 WHERE id=$5',
-                values: [req.body.type, req.body.name, req.body.author,req.body.comment,req.params.id]
+                values: [req.body.type, req.body.name, req.body.author, req.body.comment, req.params.id]
+            }, function (error, results) {
+                if (error) console.log(error);
+                res.send("success");
+            });
+        },
+
+        RichItemStateUpdate: function (req, res) {
+            client.query({
+                text: 'UPDATE rich_item SET state=$1 WHERE id=$2',
+                values: [req.params.state, req.params.id]
             }, function (error, results) {
                 if (error) console.log(error);
                 res.send("success");

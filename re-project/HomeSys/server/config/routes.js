@@ -31,5 +31,6 @@ module.exports = function (app) {
     app.post('/richitem', appCtrl.richItemService.RichItemInsert)
     app.delete('/richitem/:id', appCtrl.richItemService.RichItemDelete)
     app.put('/richitem/:id', appCtrl.richItemService.RichItemUpdate)
+    app.post('/richitem/setstate/:id/:state', appCtrl.richItemService.RichItemStateUpdate)
 }
 
