@@ -18,18 +18,23 @@ class DailyDay extends React.Component {
         this.props.fetchItemType();
     }
 
-    render() {
+    renderItemSection() {
+        if (this.props.daily.select_daily) return;
         let itemSection = null;
         if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'simple') {
-            itemSection = <DailySimple type={this.props.daily.selectedCategory.id} />;
+            itemSection = <DailySimple type={this.props.daily.selectedCategory.id}/>;
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'rich') {
-            itemSection = <DailyRich  type={this.props.daily.selectedCategory.id} />;
+            itemSection = <DailyRich type={this.props.daily.selectedCategory.id}/>;
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'book') {
-            itemSection = <DailyBook  type={this.props.daily.selectedCategory.id} />;
+            itemSection = <DailyBook type={this.props.daily.selectedCategory.id}/>;
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'series') {
-            itemSection = <DailySeries  type={this.props.daily.selectedCategory.id} />;
+            itemSection = <DailySeries type={this.props.daily.selectedCategory.id}/>;
         }
+        return itemSection;
+    }
 
+    render() {
+        let itemSection = this.renderItemSection();
         return <div>
             <div className="flex__row">
                 <DailyShow list={this.props.daily.daily_list}></DailyShow>

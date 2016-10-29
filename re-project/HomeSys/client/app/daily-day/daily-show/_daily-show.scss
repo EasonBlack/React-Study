@@ -3,8 +3,17 @@
    padding-top:40px;
    list-style:none;
    li {
+      height:50px;
+      line-height:50px;
       padding-left:10px;
       margin-bottom:10px;
+      &.selected {
+         background-color: lightsteelblue;
+         span {
+            color:white;
+         }
+
+      }
    }
 }
 
@@ -14,6 +23,10 @@
 }
 .daily__item_col {
    width:80px;
+   display: inline-block;
+}
+.daily__item_col-long {
+   width:140px;
    display: inline-block;
 }
 

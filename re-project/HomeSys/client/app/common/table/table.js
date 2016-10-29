@@ -13,7 +13,7 @@ class AppTable extends React.Component {
         let headers = this.props.headers.split(',');
         let rows = this.props.rows;
         return <div>
-            <table>
+            <table className="table table-striped">
                 <thead>
                 <tr>
                     {

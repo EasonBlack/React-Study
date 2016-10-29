@@ -159,8 +159,14 @@ img {
   padding-top: 40px;
   list-style: none; }
   .daily__list li {
+    height: 50px;
+    line-height: 50px;
     padding-left: 10px;
     margin-bottom: 10px; }
+    .daily__list li.selected {
+      background-color: lightsteelblue; }
+      .daily__list li.selected span {
+        color: white; }
 
 .daily__item_index {
   width: 20px;
@@ -168,6 +174,10 @@ img {
 
 .daily__item_col {
   width: 80px;
+  display: inline-block; }
+
+.daily__item_col-long {
+  width: 140px;
   display: inline-block; }
 
 .daily__form {

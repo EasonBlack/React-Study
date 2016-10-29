@@ -92,7 +92,7 @@ module.exports = function (client) {
                 })
             })
         },
-
+        
         DailyInsert: function (req, res) {
             client.query({
                 text: 'INSERT INTO daily(date,hour,type,content,trophy) values($1, $2, $3, $4, $5)',
@@ -118,18 +118,36 @@ module.exports = function (client) {
                 text: 'DELETE FROM  daily WHERE id=$1',
                 values: [req.params.id]
             }, function (error, results) {
-                if (error) console.log(error);
-                res.send("success");
+                client.query({
+                    text: 'select * from "DAILY_ITEM" where date=$1',
+                    values: [req.body.date]
+                }, function (error, results) {
+                    if (error) {
+                        console.log(error);
+                    }
+                    res.send({
+                        data: results.rows
+                    });
+                });
             });
         },
 
         DailyUpdate: function (req, res) {
             client.query({
-                text: 'UPDATE daily SET name=$1, type=$2, content=$3, trophy=$4 WHERE id=$5',
-                values: [req.body.name, req.body.type, req.params.content, req.params.trophy, req.params.id]
+                text: 'UPDATE daily SET hour=$1, type=$2, content=$3, trophy=$4 WHERE id=$5',
+                values: [req.body.hour, req.body.type, req.body.content, req.body.trophy, req.params.id]
             }, function (error, results) {
-                if (error) console.log(error);
-                res.send("success");
+                client.query({
+                    text: 'select * from "DAILY_ITEM" where date=$1',
+                    values: [req.body.date]
+                }, function (error, results) {
+                    if (error) {
+                        console.log(error);
+                    }
+                    res.send({
+                        data: results.rows
+                    });
+                });
             });
         }
     }

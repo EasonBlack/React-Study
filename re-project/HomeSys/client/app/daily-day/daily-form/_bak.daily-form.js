@@ -16,10 +16,7 @@ class DailyForm extends React.Component {
         };
         this.inputChange = this.inputChange.bind(this);
         this.selectChange = this.selectChange.bind(this);
-        this.saveDaily = this.saveDaily.bind(this);
-        this.updateDaily = this.updateDaily.bind(this);
-        this.clearDaily = this.clearDaily.bind(this);
-        this.deleteDaily = this.deleteDaily.bind(this);
+        this.getValues = this.getValues.bind(this);
         this.props.selectItemType(this.state.typeItems[0]);
     }
 
@@ -33,39 +30,7 @@ class DailyForm extends React.Component {
         this.props.fetchRichItem({type: e.target.value});
     }
 
-    clearDaily(e){
-        this.props.clearDaily();
-        this.setState({
-            id: null,
-            type: null,
-            hour: 0,
-            trophy: 0,
-            content: null,
-        });
-    }
-
-
-    updateDaily(){
-        this.clearDaily();
-        this.props.updateDaily({
-            date: this.props.date,
-            id: this.state.id,
-            type: this.state.type,
-            hour: this.state.hour,
-            trophy: this.state.trophy,
-            content: this.state.content
-        })
-    }
-
-    deleteDaily() {
-        this.clearDaily();
-        this.props.deleteDaily({
-            date: this.props.date,
-            id: this.state.id
-        })
-    }
-
-    saveDaily(e) {
+    getValues(e) {
         if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'simple') {
             let _content = this.props.daily.selectedRichItem;
             this.props.insetDaily({
@@ -106,34 +71,16 @@ class DailyForm extends React.Component {
 
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps.daily.select_daily)
-        let select_daily = nextProps.daily.select_daily;
-        if(!select_daily) return ;
-        this.setState({
-            id: select_daily.id,
-            type: select_daily.type,
-            hour: select_daily.hour,
-            trophy: select_daily.trophy,
-            content: select_daily.content,
-        });
-    }
-
     render() {
-        let _select_id = this.props.daily.select_daily? this.props.daily.select_daily.id : 0;
-        if(_select_id) {
-
-        }
-        let _types = this.props.type.item_type.data.filter((o)=> o.type == 'item');
         return <div className="flex__1 daily__form">
             <div className="input__row">
                 <span className="input__label">Type</span>
                 <select className="input__select"
-                        name="type"
-                        onChange={this.selectChange}
-                        value={this.state.type}>
+                    name="type"
+                    onChange={this.selectChange}
+                    value={this.state.type}>
                     <option></option>
-                    {_types.map((o, i) => {
+                    {this.props.type.item_type.data.filter((o)=> o.type == 'item').map((o, i) => {
                         return <option key={i} value={o.id}>{o.name}</option>;
                     })}
                 </select>
@@ -144,14 +91,10 @@ class DailyForm extends React.Component {
             </div>
             <div className="input__row">
                 <span className="input__label">Trophy</span>
-                <input className="input___size_medium" value={this.state.trophy} onChange={this.inputChange}
-                       name="trophy"/>
+                <input className="input___size_medium" value={this.state.trophy} onChange={this.inputChange} name="trophy"/>
             </div>
             <div className="input__row">
-                <a className="app__button_default" onClick={this.saveDaily}>Add</a>
-                <a className="app__button_default" onClick={this.updateDaily}>Update</a>
-                <a className="app__button_default" onClick={this.clearDaily}>Clear</a>
-                <a className="app__button_default" onClick={this.deleteDaily}>Delete</a>
+                <a className="app__button_default" onClick={this.getValues}>Add</a>
             </div>
         </div>;
     }

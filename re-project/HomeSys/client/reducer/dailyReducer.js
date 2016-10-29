@@ -5,6 +5,14 @@ export default function reducer(state = {}, action={}) {
                 daily_list: action.daily_list
             });
             return a;
+        case "SELECT_DAILY":
+            return  Object.assign({}, state, {
+                select_daily: action.daily_item
+            });
+        case "CLEAR_DAILY":
+            return Object.assign({},state, {
+                select_daily: null
+            });
         case "DAILY_ITEM_TYPE":
             return Object.assign({}, state, {
                 selectedCategory: action.selectedCategory

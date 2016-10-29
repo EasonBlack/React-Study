@@ -2,6 +2,19 @@ import $ from 'jquery';
 import moment from 'moment';
 
 let dailyList = {
+    getDaily: function(d) {
+        return {
+            type: 'SELECT_DAILY',
+            daily_item: d
+        }
+    },
+
+    clearDaily : function() {
+        return {
+            type: 'CLEAR_DAILY'
+        }
+    },
+
     fetch: function (object) {
         return (dispatch) => {
             $.ajax({
@@ -46,6 +59,32 @@ let dailyList = {
                 data: object,
                 success: (res)=> {
                     //dailyList.fetchByDate(object.date);
+                    dispatch(dailyList.showList(res));
+                }
+            })
+        }
+    },
+
+    updateDaily:function(object) {
+        return (dispatch) => {
+            $.ajax({
+                type: "PUT",
+                url: `/daily/${object.id}`,
+                data: object,
+                success: (res)=> {
+                    dispatch(dailyList.showList(res));
+                }
+            })
+        }
+    },
+
+    deleteDaily: function(object) {
+        return (dispatch) => {
+            $.ajax({
+                type: "DELETE",
+                url: `/daily/${object.id}`,
+                data: object,
+                success: (res)=> {
                     dispatch(dailyList.showList(res));
                 }
             })
