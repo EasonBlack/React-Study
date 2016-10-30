@@ -1,4 +1,7 @@
 module.exports = function (client) {
+
+
+
     return {
         DailyAll: function (req, res) {
             client.query({

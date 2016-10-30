@@ -19,7 +19,7 @@ class DailyBook extends React.Component {
 
     addBookItem() {
         this.props.insertRichItem({
-            type: this.props.type,
+            type: this.props.daily.selectedCategory.id,
             name: this.state.newBookName,
             author: this.state.newBookAuthor
         })

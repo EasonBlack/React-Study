@@ -159,8 +159,8 @@ img {
   padding-top: 40px;
   list-style: none; }
   .daily__list li {
-    height: 50px;
-    line-height: 50px;
+    height: 30px;
+    line-height: 30px;
     padding-left: 10px;
     margin-bottom: 10px; }
     .daily__list li.selected {

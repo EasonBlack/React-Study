@@ -107,7 +107,6 @@ class DailyForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.daily.select_daily)
         let select_daily = nextProps.daily.select_daily;
         if(!select_daily) return ;
         this.setState({

@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "async": "^2.1.2",
     "axios": "^0.14.0",
     "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "d3": "^4.2.2",
     "express": "^4.13.4",
