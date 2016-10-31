@@ -47,7 +47,7 @@ module.exports = function (client) {
 
         RichItemByType: function (req, res) {
             client.query({
-                text: 'select * from rich_item where type=$1',
+                text: 'select * from "RICH_ITEM_VIEW" where type=$1',
                 values: [req.params.type]
             }, function (error, results) {
                 if (error) {

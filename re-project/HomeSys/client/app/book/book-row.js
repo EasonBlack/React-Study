@@ -1,6 +1,6 @@
 import React from 'react'
 
-class AppRow extends React.Component {
+class BookRow extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -25,4 +25,4 @@ class AppRow extends React.Component {
 
 }
 
-export default AppRow
+export default BookRow

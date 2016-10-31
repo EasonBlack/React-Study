@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import bookActions from '../../actions/bookAction';
-import  AppTable from  '../common/table/table'
+import  BookTable from  './book-table'
 
 class Book extends React.Component {
     constructor(props, context) {
@@ -17,11 +17,11 @@ class Book extends React.Component {
     render() {
         return <div>
             <div className="page__title"></div>
-            <AppTable
-                headers="id,name,author,state,finishaction"
+            <BookTable
+                headers="id,name,author,state_name,finishaction"
                 finish={this.props.setFinish}
                 rows={this.props.book.booklist?this.props.book.booklist.data:[]}>
-            </AppTable>
+            </BookTable>
         </div>;
     }
 }

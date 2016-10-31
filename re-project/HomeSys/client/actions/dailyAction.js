@@ -104,6 +104,19 @@ let dailyList = {
         }
     },
 
+    insertBookDaily: function(object) {
+        return (dispatch) => {
+            $.ajax({
+                type: "POST",
+                url: "/dailybook",
+                data: object,
+                success: (res)=> {
+                    dispatch(dailyList.showList(res));
+                }
+            })
+        }
+    },
+
     insertSeriesDaily: function (object) {
         return (dispatch) => {
             $.ajax({

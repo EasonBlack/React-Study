@@ -95,7 +95,7 @@ class DailyForm extends React.Component {
                 item_episode: this.props.daily.series_item.item_episode,
             })
         } else if (this.props.daily.selectedCategory && this.props.daily.selectedCategory.item_type == 'book') {
-            this.props.insertSeriesDaily({
+            this.props.insertBookDaily({
                 date: this.props.date,
                 type: this.state.type,
                 hour: this.state.hour,

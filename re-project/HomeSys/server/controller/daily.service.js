@@ -44,8 +44,26 @@ module.exports = function (client) {
             });
         },
 
+        DailyBookInsert: function(req, res) {
+            client.query({
+                text: `INSERT INTO daily(date,hour,type,content,trophy) values($1, $2, $3, $4, $5)`,
+                values: [req.body.date, req.body.hour, req.body.type, req.body.item_id, req.body.trophy]
+            }, function (error, results) {
+                client.query({
+                    text: 'select * from "DAILY_ITEM" where date=$1',
+                    values: [req.body.date]
+                }, function (error, results) {
+                    if (error) {
+                        console.log(error);
+                    }
+                    res.send({
+                        data: results.rows
+                    });
+                });
+            })
+        },
+
         DailySeriesInsert: function(req, res){
-            console.log(req.body.item_episode)
             client.query({
                 text : `update rich_item
                      set items = array_append(items, $1)

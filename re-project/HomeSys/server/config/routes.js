@@ -21,6 +21,7 @@ module.exports = function (app) {
     app.post('/daily', appCtrl.dailyService.DailyInsert)
     app.post('/dailyrich', appCtrl.dailyService.DailyRichInsert)
     app.post('/dailyseries', appCtrl.dailyService.DailySeriesInsert)
+    app.post('/dailybook', appCtrl.dailyService.DailyBookInsert)
     app.delete('/daily/:id', appCtrl.dailyService.DailyDelete)
     app.put('/daily/:id', appCtrl.dailyService.DailyUpdate)
 
