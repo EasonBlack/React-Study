@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ReactDOM  from 'react-dom';
 import * as d3 from 'd3';
 import Bar from './app.bar';
+import AxisY from './app.axis-y';
 
 class App extends Component {
 
@@ -27,11 +28,15 @@ class App extends Component {
         let _max = d3.max(this.state.data.map(d=>d.num));
         let _scale = d3.scaleLinear()
             .domain([0, _max])
-            .range([10, _height]);
+            .range([0, _height]);
+        let textStyle = {
+            'fontSize': 11
+        };
 
 
         return <div className="chart__container">
-            <svg width="300" height="270">
+            <svg width="300" height="290">
+                <g transform="translate(30,10)">
                     { this.state.data.map((d, i)=> {
                         let _props = {
                             d: _scale(d.num),
@@ -43,7 +48,11 @@ class App extends Component {
                         }
                         return <Bar {..._props}/>
                     })}
-                    
+                </g>
+                <g transform="translate(20,10)" stroke="grey" style={textStyle}>
+                    <AxisY max={_max} scale={_scale} num="5" height={_height}></AxisY>
+                </g>
+
             </svg>
         </div>
     }

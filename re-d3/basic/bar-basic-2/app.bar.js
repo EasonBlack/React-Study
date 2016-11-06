@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import ReactDOM  from 'react-dom';
-import * as d3 from 'd3';
 
 
 class Bar extends Component {
@@ -15,7 +13,7 @@ class Bar extends Component {
         let textStyle = {
             'fontSize': 11
         };
-        let textRotate = "rotate(10, " + this.props.i*30 + " 270)"
+        let textRotate = "rotate(15, " + this.props.i*30 + " 270)"
 
         return <g>
             <rect fill='#D9E4EA'
