@@ -7,6 +7,7 @@ class App extends React.Component {
         return  <section className="flex__row">
             <div className="flex__300 app__leftmenu">
                 <ul >
+                    <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     <li><Link to={'/daily'}>Daily</Link></li>
                     <li><Link to={'/book'}>Book</Link></li>
                 </ul>

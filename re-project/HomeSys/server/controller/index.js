@@ -17,10 +17,12 @@ client.connect();
 const dailyService = require('./daily.service')(client);
 const richItemService = require('./rich_item.service')(client);
 const itemTypeService = require('./item_type.service')(client);
+const staticsService = require('./statics.service')(client);
 
 module.exports = {
     pageService,
     dailyService,
     richItemService,
-    itemTypeService
+    itemTypeService,
+    staticsService
 }
