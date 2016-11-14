@@ -6,7 +6,6 @@ module.exports = function (client) {
         dailyGroupSUM: function (req, res) {
             let start = moment(req.params.start).isValid() ?  req.params.start : moment().subtract(6,'days').format('YYYY-MM-DD');
             let end = moment(req.params.end).isValid() ?  req.params.end : moment().format('YYYY-MM-DD');
-            console.log(start,end);
             client.query({
                 text: `select COUNT(*) as time,SUM(d.hour) as hour,SUM(d.trophy) as trophy, t.name as typename
                     from daily d
