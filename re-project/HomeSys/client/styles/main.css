@@ -119,6 +119,29 @@ img {
   height: 30px;
   line-height: 30px; }
 
+.table__container {
+  height: calc(100vh - 50px);
+  overflow-y: scroll; }
+
+::-webkit-scrollbar {
+  width: 12px; }
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
+
+.pager__container {
+  text-align: right;
+  margin-right: 80px !important;
+  margin-top: 10px !important; }
+
+.pagination {
+  margin: 0 !important; }
+
 .app__leftmenu {
   background-color: steelblue;
   height: 100vh;

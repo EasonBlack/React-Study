@@ -15,7 +15,7 @@ class Book extends React.Component {
 
 
     render() {
-        return <div>
+        return <div >
             <div className="page__title"></div>
             <BookTable
                 headers="id,name,author,state_name,finishaction"
