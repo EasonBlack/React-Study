@@ -4,8 +4,7 @@ import BookRow from './book-row.js';
 class BookTable extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.pageAct = this.pageAct.bind(this);
-
+        this.pageChange = this.pageChange.bind(this);
         this.state = {
             pernum: 10,
             current: 1
@@ -15,20 +14,26 @@ class BookTable extends React.Component {
     componentWillMount() {
     }
 
-    pageAct(n) {
-
+    pageChange(n) {
+        this.setState({
+            current: n
+        })
     }
-
 
     render() {
         let headers = this.props.headers.split(',');
-        let rows = this.props.rows;
+        let rows = this.props.rows.slice((this.state.current - 1) * this.state.pernum, this.state.current * this.state.pernum);
+        //let rows = this.props.rows.slice((this.props.current - 1) * this.state.pernum, this.props.current * this.state.pernum);
+        //let rows = this.props.rows;
         let _props = this.props;
 
-        let _count = this.props.rows.length / this.state.pernum;
+        let _count = Math.ceil(this.props.rows.length / this.state.pernum);
         var lis = [];
-        for (var i = 1; i <= _count; i++) {
-            lis.push(<li><a href="#">{i}</a></li>);
+        for (let i = 1; i <= _count; i++) {
+            lis.push(
+                <li className={ this.state.current == i ? 'active': '' }>
+                     <a onClick={ (e) => this.pageChange(i)}>{i}</a>
+                </li>);
         }
         console.log(lis);
         return <div>
@@ -57,13 +62,13 @@ class BookTable extends React.Component {
                 <nav aria-label="Page navigation" className="pager__container">
                     <ul className="pagination">
                         <li>
-                            <a href="#" aria-label="Previous">
+                            <a onClick={(e) => this.pageChange(this.state.current - 1)} aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         {lis}
                         <li>
-                            <a href="#" aria-label="Next">
+                            <a onClick={(e) => this.pageChange( this.state.current+ 1)} aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

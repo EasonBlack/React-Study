@@ -36,7 +36,14 @@ let bookActions= {
             type: 'BOOK_LIST_SHOW',
             result: p
         }
+    },
+    changePage: function(n) {
+        return {
+            type: "BOOK_PAGE",
+            result: n
+        }
     }
+
 }
 
 export default bookActions;
