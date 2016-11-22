@@ -18,6 +18,14 @@ $flex_width: 300,400,500,600,700;
   }
 }
 
+
+$bg_color: (lightgrey , lavender), (lightblue, lightblue);
+@each $name, $bgc in $bg_color {
+  .bg__#{$name} {
+    background-color: $bgc;
+  }
+}
+
 .margin__center {
   margin-left:auto;
   margin-right:auto;

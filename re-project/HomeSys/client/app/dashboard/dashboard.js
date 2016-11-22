@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import staticActions from '../../actions/staticAction';
 import  Chart7DaysSum from  './dashboard-7days-sum';
+import  Chart7DaysBarChart from  './dashboard-7days-barchart';
 
 class DashBoard extends React.Component {
     constructor(props, context) {
@@ -22,6 +23,9 @@ class DashBoard extends React.Component {
                     charttitle = "ALL GROUP"
                     rows={this.props.static.static_group_sum ?  this.props.static.static_group_sum.data :[]}>
                 </Chart7DaysSum>
+            </div>
+            <div className="flex__1 bg__lightgrey" >
+                <Chart7DaysBarChart></Chart7DaysBarChart>
             </div>
            </div>;
     }
