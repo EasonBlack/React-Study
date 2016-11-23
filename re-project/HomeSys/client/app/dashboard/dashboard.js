@@ -16,7 +16,6 @@ class DashBoard extends React.Component {
 
 
     render() {
-        console.log(this.props.static);
         return <div className="flex__row">
             <div className="flex__300">
                 <Chart7DaysSum
@@ -25,7 +24,9 @@ class DashBoard extends React.Component {
                 </Chart7DaysSum>
             </div>
             <div className="flex__1 bg__lightgrey" >
-                <Chart7DaysBarChart></Chart7DaysBarChart>
+                <Chart7DaysBarChart
+                    rows={this.props.static.static_group_sum ?  this.props.static.static_group_sum.data :[]}>
+                </Chart7DaysBarChart>
             </div>
            </div>;
     }
