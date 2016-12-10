@@ -11,7 +11,8 @@ import Daily from './app/daily/daily.js';
 import DailyDay from './app/daily-day/daily-day.js';
 import DailyList from './app/daily/daily-list/daily-list.js';
 import DailyCalendar from './app/daily/daily-calendar/daily-calendar.js';
-import Book from './app/book/book';
+import Book from './app/viewBook/book';
+import Series from './app/viewSeries/series';
 import Dashboard from './app/dashboard/dashboard';
 
 let initialState = {}
@@ -28,6 +29,7 @@ ReactDOM.render(
                     <Route path="daily-calendar" component={DailyCalendar} />
                 </Route>
                 <Route path="/book" component={Book}/>
+                <Route path="/series" component={Series}/>
                 <Route path="/dashboard" component={Dashboard}/>
                 <Route path="/daily/:date" component={DailyDay}/>
                 <Route path="*" component={Daily}/>

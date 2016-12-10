@@ -10,6 +10,7 @@ class App extends React.Component {
                     <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     <li><Link to={'/daily'}>Daily</Link></li>
                     <li><Link to={'/book'}>Book</Link></li>
+                    <li><Link to={'/series'}>Series</Link></li>
                 </ul>
             </div>
             <div className="flex__1 app__rightcontent">
