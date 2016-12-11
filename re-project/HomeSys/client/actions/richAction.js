@@ -1,5 +1,18 @@
 import $ from 'jquery';
 
+function setFinish(row,type) {
+    return (dispatch) => {
+        $.ajax({
+            type: "POST",
+            url: `/richitem/setstate/${row.id}/10`,
+            success: function (res)  {
+                fetchAllRich(type)(dispatch);
+            }
+        })
+    }
+}
+
+
 function fetchAllRich(type) {
     return (dispatch) => {
         $.ajax({
@@ -15,7 +28,7 @@ function fetchAllRich(type) {
 
 let richActions= {
     fetchAllRich: fetchAllRich,
-
+    setFinish: setFinish,
     showAllRich: function(p) {
         return {
             type: 'RICH_LIST_SHOW',

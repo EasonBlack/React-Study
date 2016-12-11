@@ -18,7 +18,7 @@ class Series extends React.Component {
         return <div >
             <div className="page__title"></div>
             <SeriesTable
-                headers="id,name,author,state_name,items"
+                headers="id,name,author,state_name,items,action"
                 rows={this.props.rich.richlist ? this.props.rich.richlist.data:[]}>
             </SeriesTable>
         </div>;

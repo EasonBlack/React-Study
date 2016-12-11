@@ -1,4 +1,5 @@
 import React from 'react'
+import SeriesAction from './series-action'
 
 class SeriesRow extends React.Component {
     constructor(props, context) {
@@ -10,6 +11,10 @@ class SeriesRow extends React.Component {
         return <tr>
             {
                 headers.map(function (h) {
+                    if ( h=='action') {
+                        return <SeriesAction item={row} state={row['state']}></SeriesAction>
+                    }
+
                     if(typeof row[h] == 'object' && row[h]) {
                         return <td>{row[h].join(',')}</td>
                     } else {

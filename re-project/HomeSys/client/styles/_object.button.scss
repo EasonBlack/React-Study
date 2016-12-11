@@ -2,6 +2,22 @@
   padding-top:10px;
 }
 
+.app__table-button_container {
+  
+}
+
+.app__table-button {
+  padding: 0px 10px;
+  margin:0px 5px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  color:white;
+}
+.app__table-button_finish {
+  background-color: lightcoral;
+}
+
 .app__button_default {
   padding: 0px 10px;
   margin:0px 5px;
