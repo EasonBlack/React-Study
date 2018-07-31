@@ -12,7 +12,7 @@ class App extends Component {
     }
 
     updateState(e) {
-        this.setState({data: e.target.value});
+        this.setState({data: e.target.value}, ()=>console.log('xxxx'));
     }
 
     clearInput() {

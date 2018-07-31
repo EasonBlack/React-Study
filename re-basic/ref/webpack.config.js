@@ -1,9 +1,10 @@
 var webpack = require('webpack');
+var path = require('path')
 
 module.exports = {
     entry: "./app.js",
     output: {
-        path: './build',
+        path: path.resolve(__dirname, './build'),
         filename: "bundle.js",
         publicPath: '/'
     },
@@ -11,7 +12,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/, exclude: /node_modules/,  loader: 'babel',
+                test: /\.js$/, exclude: /node_modules/,  loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react'],
                     plugins: ['transform-object-assign']
@@ -19,7 +20,7 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                loader: "style!css"
+                loader: "style-loader!css-loader"
             }
         ]
     }
