@@ -6,9 +6,10 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './build'),
         filename: "bundle.js",
-        publicPath: '/'
+        publicPath: '/build/',
     },
     devtool: 'source-map',
+    
     module: {
         loaders: [
             {
@@ -23,5 +24,10 @@ module.exports = {
                 loader: "style-loader!css-loader"
             }
         ]
-    }
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: true,
+        inline: false
+    },
 }

@@ -1,18 +1,21 @@
 
 import React, {Component} from 'react'
 import ReactDOM  from 'react-dom';
+import Testcom from './Testcom';
+
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: ''
+            data: '',
+            msg: 'aaaaa'
         }
     }
 
     updateState(e) {
-        this.setState({data: e.target.value}, ()=>console.log('xxxx'));
+        this.setState({data: e.target.value});
     }
 
     clearInput() {
@@ -22,10 +25,11 @@ class App extends Component {
 
     render() {
         return <div>
-            <input value = {this.state.data} onChange = {this.updateState.bind(this)}
+            <input value = {this.state.data} onChange = {(e)=>this.updateState(e)}
                 ref = "myInput"></input>
             <button onClick = {this.clearInput.bind(this)}>CLEAR</button>
             <h4>{this.state.data}</h4>
+            <Testcom value={this.state.msg} onClick={()=>alert(123)} />
         </div>
     }
 }
