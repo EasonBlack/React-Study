@@ -2,7 +2,8 @@
 import React, {Component} from 'react'
 import ReactDOM  from 'react-dom';
 import Testcom from './Testcom';
-
+import Testcom2 from './Testcom2';
+import './app.css'
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
             <button onClick = {this.clearInput.bind(this)}>CLEAR</button>
             <h4>{this.state.data}</h4>
             <Testcom value={this.state.msg} onClick={()=>alert(123)} />
+            <Testcom2 />
         </div>
     }
 }
