@@ -2,7 +2,8 @@
 import React, {Component} from 'react'
 import ReactDOM  from 'react-dom';
 import Item from './item';
-import './app.css'
+import './app.scss'
+import classNames from "classnames";
 
 class App extends Component {
 
@@ -14,21 +15,47 @@ class App extends Component {
                {id:2, name:'bbbb'},
                {id:3, name:'cccc'},
                {id:4, name:'dddd'}
-           ]
+           ],
+           currentPos: 0
         }
     }
 
     clickHandle() {
-        let [_first, ..._last] = this.state.items;
-        let _items =[..._last, _first];
-        this.setState({items: _items});
+        let _current = this.state.currentPos
+        if(_current != this.state.items.length - 1) {
+            this.setState({currentPos: _current + 1});
+        } else {
+            this.setState({currentPos: _current - 1});
+        }
+    }
+
+    itemSelect(index) {
+        this.setState({currentPos:index}, ()=>{console.log(123)});
     }
 
     render() {
         return  <div className='container'>
             <div className='play-wrapper'>
                 <div className='play-path' onClick={this.clickHandle.bind(this)}>
-                    {this.state.items.map( (item, index) => <Item title={item.name} key={item.id} index={index} />)}   
+                    {this.state.items.map( (item, index) => 
+                        <Item title={item.name} current={this.state.currentPos} key={item.id} index={index} 
+                        onClick={(e)=> {           
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.itemSelect(index)
+                        }}/>
+                    )}   
+                </div>
+                <div className='play-nav' >
+                    {this.state.items.map( (item, index) => 
+                    <div key={item.id} className={classNames({current: index==this.state.currentPos})}  
+                         onClick={(e)=> {           
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.itemSelect(index)
+                        }}
+                    />
+                    )}   
                 </div>
             </div>
         </div>

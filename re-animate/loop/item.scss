@@ -1,5 +1,6 @@
 .item-wrapper {
-    
+    position: absolute;
+    transition: all 0.5s ease-in;
     width:200px;
     height:200px;
     color: white;
@@ -7,4 +8,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    transform:scale(0.6);
+    opacity: 0.6;
+    &.current {
+        opacity: 1;
+        transform:scale(1);
+    }
 }

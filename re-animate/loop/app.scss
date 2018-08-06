@@ -1,0 +1,42 @@
+
+.container {
+    width:100vw;
+    height:500px;
+    display:flex;
+    justify-content: center;
+}
+
+.play-wrapper {
+    width:600px;
+    overflow: hidden;
+    height:100%;
+    padding-top:100px;
+    position:relative;
+}
+
+.play-path {
+    width:100vw;
+    height:200px;
+    display: flex;
+    align-items: center;
+    position:relative;
+}
+
+.play-nav {
+    width:30vw;
+    margin-left: auto;
+    margin-right:auto;
+    display:flex;
+    height:30px;
+    justify-content: center;
+    align-items: center;
+    div {
+        width:15px;
+        height:15px;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+    div.current {
+        background-color: steelblue;
+    }
+}

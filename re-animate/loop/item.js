@@ -1,15 +1,17 @@
 
 import React from 'react'
 import  './item.scss'
+import classNames from "classnames";
 
 const Item = (props) => {
     let _styles = {
-        position: 'absolute',
-        left: 200 * (props.index -1) ,
-        transition: 'left 1s ease-in'
+        left: 200 * (props.index - props.current)
     }
     return (
-        <div className='item-wrapper' style={_styles}>
+        <div style={_styles}
+            className = {'item-wrapper ' +  classNames({current: props.index == props.current})}
+            onClick={props.onClick}
+        >
             {props.title + props.index} 
         </div>
       );
