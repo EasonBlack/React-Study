@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM  from 'react-dom';
+import React, {Component} from 'react';
 import TodoInput  from './TodoInput.js';
 import TodoList from './TodoList.js';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
 import actions from '../redux/actions.js'
 
-class App extends React.Component {
+class App extends Component {
 
     render() {
         console.log(actions);
