@@ -32,8 +32,10 @@
     "react-redux": "^5.0.7",
     "react-route": "^1.0.3",
     "react-router": "^2.0.1",
+    "react-tooltip": "^3.9.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.0.2"
   },
   "description": "React study purpose",
   "main": "index.js",
