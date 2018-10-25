@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state ={
+                val:   "m"
+            }
+        }
+
+        sexOnClick(e) {
+            this.setState({
+                val: e.target.value
+            })
+        }
+
+        confirm() {
+            console.log(this.state.val);
+        }
+
+
+        render() {
+    
+            return (<div>
+                <input type="radio" name="gender" value="f" checked={this.state.val=="f" ? 'checked': ''} onChange={this.sexOnClick.bind(this)}/><label>女</label>
+                <input type="radio" name="gender" value="m" checked={this.state.val=="m" ? 'checked': ''} onChange={this.sexOnClick.bind(this)}/><label>男</label>
+                <button onClick={this.confirm.bind(this)}>Confirm</button>
+            </div>)
+        }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(<App />, domContainer);
+</script>
+
+</html>
