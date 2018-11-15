@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, html, #app {
+            width:100%;
+            height:100%;
+            padding:0;
+            margin:0;
+        }
+        #app {
+            display:flex;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <table id='table1'>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>num</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='mytr'>
+                <td>aaa</td>
+                <td class='mytd'>111</td>
+                <td>111</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div id="app"></div>
+</body>
+<script>
+  let Tr = document.querySelector('.mytr')
+  Tr.addEventListener('click', ()=>{
+    alert('this is tr')
+  })
+  let Td = document.querySelector('.mytd')
+  Td.addEventListener('click', (e)=>{
+    e.stopPropagation(); 
+    alert('this is td')
+  })
+
+</script>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+<script type="text/babel">
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+              items: [
+                {name: "aaa", age: 12, num: 13},
+                {name: "bbb", age: 12, num: 13},
+                {name: "cccc", age: 12, num: 13},
+                {name: "dddd", age: 12, num: 13},
+                {name: "eeee", age: 12, num: 13}
+              ]
+            }
+        }
+
+        rowClick(value) {
+          alert(value)
+        }
+
+        colClick( e, value) {
+          e.preventDefault();
+          e.stopPropagation(); 
+          alert(value);
+        }
+
+        render() {
+            return <table>
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>age</th>
+                  <th>num</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.state.items.map((item, index)=>{
+                    return (<tr key={index} onClick={this.rowClick.bind(this, item.name)}>
+                      <td>{item.name}</td>
+                      <td onClick={(e)=>this.colClick(e, item.age)}>{item.age}</td>
+                      <td>{item.num}</td>
+                    </tr>)
+                  })
+                }
+              </tbody>
+            </table>
+        }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(<App />, domContainer);
+</script>
+
+</html>
