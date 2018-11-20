@@ -27,6 +27,7 @@
     "react-addons-transition-group": "^15.3.1",
     "react-big-calendar": "^0.10.3",
     "react-classset": "0.0.2",
+    "react-date-range": "^1.0.0-beta",
     "react-datepicker": "^0.29.0",
     "react-dom": "^16.4.1",
     "react-infinite": "^0.13.0",
