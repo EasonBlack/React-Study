@@ -10,11 +10,12 @@ module.exports = {
     },
     devtool: 'source-map',
     module: {
-        rules: [
+        loaders: [
             {
                 test: /\.js$/, exclude: /node_modules/,  loader: 'babel-loader',
                 query: {
-                    presets: ['@babel/react', '@babel/stage-0']  
+                    presets: ['es2015', 'react', 'stage-0'],
+                    plugins: ['transform-object-assign']
                 }
             },
             {

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, html, #app {
+            width:100%;
+            height:100%;
+            padding:0;
+            margin:0;
+        }
+        #app {
+            display:flex;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+<script type="text/babel">
+
+  function deepGet(object, path, defaultValue) {
+    return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
+            .reduce((o, k) => (o || {})[k], object) || defaultValue;
+  }
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+              cols: [
+                {id: "name", title: "Name"},
+                {id: "age", title: "Age"},
+                {id: "num", title: "Num", render: (item)=>(<a onClick={()=>alert(item.num)}>{item.num}</a>)},
+                {id: "", title: "Child", deep: "child.a"}
+              ],
+              items: [
+                {name: "aaa", age: 12, num: 13, child:  {a: 12}},
+                {name: "bbb", age: 12, num: 13, child:  {a: 13}},
+                {name: "cccc", age: 12, num: 13, child: {a: 14}},
+                {name: "dddd", age: 12, num: 13, child: {a: 16}},
+                {name: "eeee", age: 12, num: 13, child: {a: 17}}
+              ]
+            }
+        }
+
+        render() {
+            return <table>
+              <thead>
+                <tr>
+                  {
+                    this.state.cols.map((col,idx)=>{
+                      return <th key={idx}>{col.title}</th>
+                    })
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.state.items.map((item, index)=>{
+                    return (<tr key={index}>
+                      {
+                        this.state.cols.map((col, idx)=>{
+                          let deep = col.deep;
+                          if(!col.render) {
+                            return <td key={idx}>{deep ? deepGet(item, deep) : item[col.id]}</td>
+                          } else {
+                            return <td key={idx}> 
+                             {col.render(item)}
+                            </td> 
+                          }
+                          
+                        })
+                      }
+                    </tr>)
+                  })
+                }
+              </tbody>
+            </table>
+        }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(<App />, domContainer);
+</script>
+
+</html>
