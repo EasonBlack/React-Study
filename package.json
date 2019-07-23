@@ -33,6 +33,7 @@
     "react-dom": "^16.4.1",
     "react-infinite": "^0.13.0",
     "react-redux": "^5.0.7",
+    "react-redux-toastr": "^7.4.8",
     "react-route": "^1.0.3",
     "react-router": "^2.0.1",
     "react-sortable-hoc": "^0.8.4",
@@ -69,6 +70,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.13.2",
     "webpack": "^2.5.0",
+    "webpack-bundle-analyzer": "^3.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.10.0"

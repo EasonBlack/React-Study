@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, html, #app {
+            width:100%;
+            height:100%;
+            padding:0;
+            margin:0;
+        }
+        #app {
+            display:flex;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+   
+    class Student {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        addX() {
+            this.x = this.x + 1;
+        }
+    }
+
+    
+    class ComTest extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                student: new Student(5,2)
+            }
+        }
+
+        addOne() {
+            console.log("xxxxx")
+           
+            this.state.student.addX()
+            this.setState({
+                student: this.state.student
+            })
+
+        }
+
+        render() {
+            let {student} = this.state;
+           return <div>
+             <div>{student.x}</div>
+             <div>
+                <button onClick={this.addOne.bind(this)}>add</button>
+             </div>
+           </div>
+        }
+    }
+    
+    
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+               
+            }
+        }
+
+        render() {
+           return <div>
+            <ComTest />
+           </div>
+        }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(<App />, domContainer);
+</script>
+
+</html>

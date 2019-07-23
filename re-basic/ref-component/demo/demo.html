@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class DemoComponent extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {
+                num: 0
+            }
+        }
+
+        testClick() {
+            this.setState({
+                num : this.state.num + 1
+            })
+        }
+        
+        render() {
+    
+            return (<div>
+                <div>{this.state.num}</div>
+                <button onClick={this.testClick.bind(this)}>test</button>
+            </div>)
+        }
+    }
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.cbox = null;
+        }
+
+        testClick() {
+            console.log(this.cbox)
+            console.log(this.cbox.state.num)
+        }
+
+        render() {
+    
+            return (<div>
+                  <DemoComponent ref={(e)=>{this.cbox = e}} />
+                  <button onClick={this.testClick.bind(this)}>parent test</button>
+                </div>)
+        }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(<App />, domContainer);
+</script>
+
+</html>
